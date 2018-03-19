@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    <h4 class="card-title">Events </h4>
+                  </div>
+                  <div class="card-block">
+                    <!--List Events Start-->
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                    <hr>
+                    <button type="button" class="btn btn-primary btn-raised" (click)="newEvent()" >New Event </button>
+                    <table show-filter="true" class="table">
+                      <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Operations</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr  *ngFor="let e of events |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
+                        <td>{{e.title}}</td>
+                        <td>{{e.startDate}}</td>
+                        <td>{{e.endDate}}</td>
+                        <td>
+                          <button type="button" class="btn btn-success btn-raised" (click)="onUpadate(e.id)">update </button>
+                          <button type="button" class="btn btn-danger btn-raised" (click)="onDelete(e)">Delete </button>
+                        </td>
+                      </tr>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </tbody>
+                    </table>
+                    <!--List Events Ends-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

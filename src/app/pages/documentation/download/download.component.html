@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+
+          <!--Advanced filter Starts-->
+          <section id="advanced">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Download File </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <!--downloading Starts-->
+                        <input type="text" [(ngModel)]="search" name="searchText" placeholder="Search...">
+                        <table  show-filter="true"  class="table">
+                          <thead>
+                          <tr>
+                            <th>File name</th>
+                            <th>Operations</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr  *ngFor="let f of list |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
+                            <td>{{f}}</td>
+                            <td>
+                              <button type="button" (click)="saveFile(f)" class="btn ft-download"></button>
+                            </td>
+                          </tr>
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                          </tbody>
+                        </table>
+                        <button type="button" class="btn btn-raised btn-success"  (click)="uploadAll()">
+                        <span class="fa fa-download"></span> Download all
+                      </button>
+                      <!--downloading Ends-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!--Advanced filter Ends-->
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

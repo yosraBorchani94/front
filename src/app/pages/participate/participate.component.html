@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    <h4 class="card-title">Events </h4>
+                  </div>
+                  <div class="card-block">
+                    <!--List Events Start-->
+
+
+                    <hr>
+                    <table show-filter="true" class="table">
+                      <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Operations</th>
+                      </tr>
+                      </thead>
+                      <!--<tbody *ngIf="test">-->
+                      <!--<tr  *ngFor="let e of events ; let i = index">-->
+                        <!--<td>{{e.title}}</td>-->
+                        <!--<td>{{e.startDate}}</td>-->
+                        <!--<td>{{e.endDate}}</td>-->
+                        <!--<td>-->
+                          <!--<form #f="ngForm" (ngSubmit)="onParticipate(f.value)">-->
+                          <!--<input type="hidden" [(ngModel)]="username" name="username" />-->
+                          <!--<input type="hidden" [(ngModel)]="e.id" name="id_event" />-->
+                            <!--<button type="submit" class="btn btn-success btn-raised" [disabled]="test[i]">participate </button>-->
+                          <!--</form>-->
+                        <!--</td>-->
+                      <!--</tr>-->
+                      <!--</tbody>-->
+                      <tbody *ngIf="t()">
+                      <tr  *ngFor="let e of events ; let i = index">
+                      <td>{{e.title}}</td>
+                      <td>{{e.startDate}}</td>
+                      <td>{{e.endDate}}</td>
+                      <td>
+                      <form #f="ngForm" (ngSubmit)="onParticipate(f.value)">
+                      <input type="hidden" [(ngModel)]="username" name="username" />
+                      <input type="hidden" [(ngModel)]="e.id" name="id_event" />
+                        {{i}} {{test[i]}}
+                        <div *ngIf="i>=1">
+                      <button type="submit" class="btn btn-success btn-raised" [disabled]=test[i]  >participate </button>
+                        </div>
+                      </form>
+                      </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--List Events Ends-->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+

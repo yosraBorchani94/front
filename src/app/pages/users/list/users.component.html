@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+
+          <!--Advanced filter Starts-->
+          <section id="advanced">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Users </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                      <hr>
+                      <button type="button" class="btn btn-primary btn-raised" (click)="register()" >New User </button>
+                      <table show-filter="true" class="table">
+                        <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Username</th>
+                          <th>Operations</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  *ngFor="let u of users |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
+                          <td>{{u.id}}</td>
+                          <td>{{u.username}}</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-raised" (click)="onUpdateUser(u.id)">update </button>
+                            <button type="button" class="btn btn-danger btn-raised"  (click)="onDeleteUser(u)">Delete </button>
+                          </td>
+                        </tr>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </tbody>
+                      </table>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </section>
+           <!--Advanced filter Ends-->
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

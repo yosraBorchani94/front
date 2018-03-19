@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <section id="advanced">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Watch Video : {{ namevideo}} </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <!--View videos start-->
+                      <div [innerHtml]="iframe_html"></div>
+                      <br/>
+                      <hr>
+                      <div>
+                        <h3 class="card-title"> Description : </h3>
+                        <a> {{descriptionvideo}}</a>
+                      </div>
+                      <!-- View videos Ends-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

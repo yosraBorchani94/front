@@ -1,0 +1,107 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-block">
+                    <!--UploadFole Starts-->
+                    <section id="file-upload">
+                     <div class="card">
+                       <div class="card-header">
+                         <h4>Upload Documents</h4>
+                       </div>
+                       <div class="card-block">
+                         <div class="row">
+                           <!-- Drop zone Starts-->
+                           <div class="col-md-12 col-lg-6">
+                             <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="py-5 mb-3 text-center font-medium-5 text-uppercase grey my-drop-zone">
+                                Dropzone
+                             </div>
+                           </div>
+                           <!-- Drop zone Ends-->
+                           <!-- Choose File Starts-->
+                           <!--   <div>
+                                <input type="file"
+                                      (change)="handleFileInput($event.target.files)">
+
+                                 <button type="button" class="btn btn-success" (click)="uploadFileToActivity()"> Upload </button>
+                              </div>-->
+                             <!-- Choose File Ends-->
+                         </div>
+                         <div class="row">
+                           <div class="col-md-3">
+                             <h4>Selected files</h4>
+                             <label class="custom-file">
+                               <input type="file" ng2FileSelect [uploader]="uploader" class="custom-file-input">
+                               <span class="custom-file-control"></span>
+                             </label>
+                           </div>
+
+                           <div class="col-md-9">
+                             <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+                             <table class="table">
+                               <thead>
+                               <tr>
+                                 <th width="50%">Name</th>
+                                 <th>Actions</th>
+                               </tr>
+                               </thead>
+                               <tbody>
+                               <tr *ngFor="let item of uploader.queue">
+                                 <td><strong>{{ item?.file?.name }}</strong></td>
+                                 <td nowrap>
+                                   <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" (click)="upload(item._file)" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                     <span class="fa fa-upload"></span> Upload
+                                   </button>
+                                   <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
+                                     <span class="fa fa-trash"></span> Remove
+                                   </button>
+                                 </td>
+                               </tr>
+                               </tbody>
+                             </table>
+                             <div>
+                               <p>Queue progress:
+                                 <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
+                               </p>
+                               <button type="button" class="btn btn-raised btn-success" (click)="uploader.uploadAll()" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                                 <span class="fa fa-upload"></span> Upload all
+                               </button>
+                               <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                                 <span class="fa fa-ban"></span> Cancel all
+                               </button>
+                               <button type="button" class="btn btn-raised btn-danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                                 <span class="fa fa-trash"></span> Remove all
+                               </button>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </section>
+                    <!--uploadFile Ends-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+

@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <!-- Start Add New Event-->
+          <section id="advanced">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Add new event </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <form #f="ngForm" (ngSubmit)="onSaveEvent(f.value)" novalidate>
+                        <input class="form-control" ngModel="" type="text" name="title"  placeholder="Event Name" required/>
+                        <br>
+                        <input  class="form-control" [owlDateTimeTrigger]="dt1"  ngModel="" [owlDateTime]="dt1" placeholder="Start Date" name="startDate" required>
+                        <owl-date-time #dt1></owl-date-time>
+                        <br>
+                        <input  class="form-control" [owlDateTimeTrigger]="dt2"  ngModel="" [owlDateTime]="dt2" placeholder="End Date" name="endDate" required >
+                        <owl-date-time #dt2></owl-date-time>
+                        <br>
+                        <button [disabled]="!f.valid"  type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" (click)="returnToCalendar()" class="btn btn-danger">Cancel</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!--End Add New Event-->
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
