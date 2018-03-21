@@ -22,6 +22,7 @@ export class LoginPageComponent implements OnInit {
           this.authService.saveToken(jwt);
           sessionStorage.setItem('username', user.username);
           sessionStorage.setItem('idUser', user.id)
+          sessionStorage.setItem('role', this.authService.returnRole())
           this.router.navigateByUrl('/full-layout');
         },
         err => {

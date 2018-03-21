@@ -18,44 +18,31 @@
                   </div>
                   <div class="card-block">
                     <!--List Events Start-->
-
-
-                    <hr>
                     <table show-filter="true" class="table">
                       <thead>
                       <tr>
                         <th>Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Operations</th>
+                        <th>Status</th>
                       </tr>
                       </thead>
-                      <!--<tbody *ngIf="test">-->
-                      <!--<tr  *ngFor="let e of events ; let i = index">-->
-                        <!--<td>{{e.title}}</td>-->
-                        <!--<td>{{e.startDate}}</td>-->
-                        <!--<td>{{e.endDate}}</td>-->
-                        <!--<td>-->
-                          <!--<form #f="ngForm" (ngSubmit)="onParticipate(f.value)">-->
-                          <!--<input type="hidden" [(ngModel)]="username" name="username" />-->
-                          <!--<input type="hidden" [(ngModel)]="e.id" name="id_event" />-->
-                            <!--<button type="submit" class="btn btn-success btn-raised" [disabled]="test[i]">participate </button>-->
-                          <!--</form>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--</tbody>-->
-                      <tbody *ngIf="t()">
-                      <tr  *ngFor="let e of events ; let i = index">
+                      <tbody>
+                      <tr  *ngFor="let e of events ; let i = index ">
                       <td>{{e.title}}</td>
-                      <td>{{e.startDate}}</td>
-                      <td>{{e.endDate}}</td>
+                      <td>{{e.startDate | date:'yyyy-MM-dd HH:mm a'}}</td>
+                      <td>{{e.endDate | date:'yyyy-MM-dd HH:mm a'}}</td>
                       <td>
                       <form #f="ngForm" (ngSubmit)="onParticipate(f.value)">
                       <input type="hidden" [(ngModel)]="username" name="username" />
                       <input type="hidden" [(ngModel)]="e.id" name="id_event" />
-                        {{i}} {{test[i]}}
-                        <div *ngIf="i>=1">
-                      <button type="submit" class="btn btn-success btn-raised" [disabled]=test[i]  >participate </button>
+                        <div *ngIf=test[i]>
+                          <a class="info p-0">
+                            <i class="ft-check"> Participated</i>
+                          </a>
+                        </div>
+                        <div *ngIf=!test[i]>
+                          <button type="submit" class="btn btn-success btn-sm"> To participate </button>
                         </div>
                       </form>
                       </td>

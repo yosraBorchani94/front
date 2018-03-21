@@ -6,7 +6,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from './layouts/content/content-layout.component';
 import { FullLayoutComponent } from './layouts/full/full-layout.component';
-// import * as $ from 'jquery';
 import {LoginPageComponent} from './pages/login/login-page.component';
 import {AuthenticationService} from '../app/service/authentification.service';
 import {FormsModule} from '@angular/forms';
@@ -25,7 +24,6 @@ import {FileUploadService} from './service/file-upload.service';
 import { EventsComponent } from './pages/events/list/events.component';
 import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
 import {NgbDatepickerModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
-import {DateTimePickerComponent} from './pages/events/list/date-time-picker';
 import { TagInputModule } from 'ngx-chips';
 import { DownloadComponent } from './pages/documentation/download/download.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
@@ -53,7 +51,6 @@ import { CustomFormsModule } from 'ng4-validators'
         UpdateComponent,
         DocumentationComponent,
         EventsComponent,
-        DateTimePickerComponent,
         DownloadComponent,
         ForgotPasswordComponent,
         AddComponent,

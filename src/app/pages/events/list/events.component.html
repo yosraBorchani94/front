@@ -20,7 +20,7 @@
                     <!--List Events Start-->
                     <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
                     <hr>
-                    <button type="button" class="btn btn-primary btn-raised" (click)="newEvent()" >New Event </button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="newEvent()" >New Event</button>
                     <table show-filter="true" class="table">
                       <thead>
                       <tr>
@@ -33,11 +33,15 @@
                       <tbody>
                       <tr  *ngFor="let e of events |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
                         <td>{{e.title}}</td>
-                        <td>{{e.startDate}}</td>
-                        <td>{{e.endDate}}</td>
+                        <td>{{e.startDate | date:'yyyy-MM-dd HH:mm a'}}</td>
+                        <td>{{e.endDate | date:'yyyy-MM-dd HH:mm a'}}</td>
                         <td>
-                          <button type="button" class="btn btn-success btn-raised" (click)="onUpadate(e.id)">update </button>
-                          <button type="button" class="btn btn-danger btn-raised" (click)="onDelete(e)">Delete </button>
+                          <a class="success p-0" data-original-title="" title=""(click)="onUpadate(e.id)">
+                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                          </a>
+                          <a class="danger" data-original-title="" title="" (click)="onDelete(e)">
+                            <i class="ft-trash font-medium-3"></i>
+                          </a>
                         </td>
                       </tr>
                       <pagination-controls (pageChange)="p = $event"></pagination-controls>

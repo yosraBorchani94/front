@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {EventService} from '../../../service/EventService';
 import {Event} from '../../../modele/modele.event';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'app-update-event',
@@ -13,15 +14,16 @@ export class UpdateEventComponent implements OnInit {
   idEvent;
   event: any;
 
-  constructor(public activatedRoute: ActivatedRoute, public eventService: EventService, private router: Router) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public activatedRoute: ActivatedRoute,
+              public eventService: EventService, private router: Router) {
     this.idEvent = activatedRoute.snapshot.params['id'];
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
     this.eventService.getEvent(this.idEvent)
       .subscribe(data => {
         this.event = data;
-        console.log(this.event)
       }, err => {
         console.log(err);
       });
@@ -32,14 +34,21 @@ export class UpdateEventComponent implements OnInit {
   }
 
   update() {
-    this.eventService.updateEvent(this.event)
-      .subscribe(resp => {
-          this.event = resp;
-          this.router.navigateByUrl('/events');
-        },
-        err => {
-          console.log('err' + err);
-          console.log(this.event);
-        });
+    if (this.event.startDate > this.event.endDate) {
+      this.toastr.warning('Please enter a correct date', 'Warning!');
+    } else {
+      this.eventService.updateEvent(this.event)
+        .subscribe(resp => {
+            this.event = resp;
+            this.toastr.success('event: ' + this.event.title + ' updated', 'Success!');
+            setTimeout(() => {
+              this.router.navigateByUrl('/events');
+            }, 2000);
+          },
+          err => {
+            console.log('err' + err);
+            console.log(this.event);
+          });
+    }
   }
 }

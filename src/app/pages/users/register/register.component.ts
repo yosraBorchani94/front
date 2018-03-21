@@ -30,14 +30,13 @@ export class RegisterComponent implements OnInit {
 
   onRegister(user) {
     if (user.password === user.repassword) {
-      this.toastr.success('New user created', 'Success!');
       this.usersService.register(user)
       .subscribe(resp => {
           this.user = resp;
-          this.router.navigateByUrl('/users');
+          this.toastr.success('New user created', 'Success!');
           setTimeout(() => {
             this.router.navigate(['/users']);
-          }, 1000);
+          }, 2000);
         },
         err => {
           console.log('err' + err);

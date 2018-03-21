@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {UsersService} from '../../../service/users.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'app-users',
@@ -10,8 +11,11 @@ import {UsersService} from '../../../service/users.service';
 export class UsersComponent implements OnInit {
   users: any;
   searchText;
-  constructor(public usersService: UsersService , private router: Router ) {
+
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public usersService: UsersService, private router: Router) {
+    this.toastr.setRootViewContainerRef(vcr);
   }
+
   ngOnInit() {
     this.usersService.getUsers()
       .subscribe(data => {
@@ -21,6 +25,7 @@ export class UsersComponent implements OnInit {
           console.log(err);
         });
   }
+
   register() {
     this.router.navigateByUrl('/register');
   }
@@ -33,6 +38,7 @@ export class UsersComponent implements OnInit {
     this.usersService.deleteUser(users.id)
       .subscribe(data => {
         this.users.splice(this.users.indexOf(users), 1);
+        this.toastr.success('User  ' + users.username + '  deleted', 'Success!');
       }, err => {
         console.log(err);
       });

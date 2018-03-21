@@ -14,8 +14,8 @@ export class UpdateComponent implements OnInit {
   idUser: number;
   roles;
   roleName;
-
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public activatedRoute: ActivatedRoute, public usersService: UsersService, public router: Router) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public activatedRoute: ActivatedRoute,
+              public usersService: UsersService, public router: Router) {
     this.idUser = activatedRoute.snapshot.params['id'];
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -31,7 +31,6 @@ export class UpdateComponent implements OnInit {
     this.usersService.getUser(this.idUser)
       .subscribe(data => {
         this.user = data;
-        console.log(this.user)
       }, err => {
         console.log(err);
       });
@@ -39,17 +38,18 @@ export class UpdateComponent implements OnInit {
 
   updateUser() {
     if (this.user.password === this.user.repassword) {
-      this.toastr.success('User updated', 'Success!');
+      console.log(this.user);
       this.usersService.updateUser(this.user)
       .subscribe(resp => {
           this.user = resp;
           setTimeout(() => {
+            this.toastr.success('User updated', 'Success!');
             this.router.navigate(['/users']);
-          }, 1000);
+          }, 2000);
         },
         err => {
           console.log('err' + err);
-          console.log(this.user);
+          this.toastr.error('Updated Fail', 'Error');
         });
     } else {
       this.toastr.error('Not matching password/repassword', 'Error');

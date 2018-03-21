@@ -57,4 +57,11 @@ export class EventService {
     return this.http.post(this.host + '/accpetedEvent', value,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
+  sendSecondNotification () {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/eventNotification/',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 }

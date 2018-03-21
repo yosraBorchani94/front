@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {UsersService} from '../../../service/users.service';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'app-add',
@@ -8,21 +9,19 @@ import {UsersService} from '../../../service/users.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  myList = [];
+
   users;
   listUser;
+  test;
 
-  constructor(public usersService: UsersService, private router: Router) {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public usersService: UsersService, private router: Router) {
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
     this.usersService.getUsers()
       .subscribe(data => {
           this.listUser = data;
-          for (const user of this.listUser) {
-            this.myList.push(user.username)
-          }
-          console.log('myList: ' + this.myList)
         },
         err => {
           console.log(err);
@@ -34,12 +33,21 @@ export class AddComponent implements OnInit {
   }
 
   onSaveEvent(event) {
-    this.usersService.saveEvent(event)
-      .subscribe(data => {
-          this.router.navigateByUrl('/events');
-        },
-        err => {
-          console.log(err);
-        });
+    if (event.startDate > event.endDate) {
+      this.toastr.warning('Please enter a correct date', 'Warning!');
+    } else {
+      this.usersService.saveEvent(event)
+        .subscribe((data) => {
+            this.test = data;
+            this.toastr.success('New event created', 'Success!');
+            setTimeout(() => {
+              this.router.navigateByUrl('/events');
+            }, 2000);
+          },
+          err => {
+            console.log(err);
+          });
+    }
+
   }
 }

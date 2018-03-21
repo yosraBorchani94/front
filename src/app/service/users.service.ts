@@ -67,7 +67,7 @@ export class UsersService {
   }
 
   saveEvent(event) {
-    // console.log(event);
+    console.log(event);
     return this.http.post(this.host + '/event', event,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
