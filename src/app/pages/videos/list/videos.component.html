@@ -26,12 +26,12 @@
                         <thead>
                         <tr>
                           <th>name</th>
-                          <th>URL</th>
-                          <th>Operation</th>
+                          <th >URL</th>
+                          <th >Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr  *ngFor="let v of videos |filter: searchText | paginate: { itemsPerPage: 5, currentPage: p}">
+                        <tr  *ngFor="let v of videos |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
                           <td>{{v.name}}</td>
                           <td>{{v.url}}</td>
                           <td>

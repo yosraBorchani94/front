@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './sidebar-routes.config';
-import { RouteInfo } from "./sidebar.metadata";
-import { Router, ActivatedRoute } from "@angular/router";
+import { RouteInfo } from './sidebar.metadata';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -12,7 +12,7 @@ declare var $: any;
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
-
+    roleSession = sessionStorage.getItem('role');
     constructor(private router: Router,
         private route: ActivatedRoute) {
     }

@@ -10,7 +10,6 @@ import {VideoService} from '../../../service/video.service';
 })
 export class ViewVideoComponent implements OnInit {
   iframe_html: any;
-  youtubeUrl = 'https://www.youtube.com/watch?v=8FNwzhfPCGw';
   idVideo;
   video;
   namevideo;

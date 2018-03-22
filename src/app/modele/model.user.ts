@@ -3,7 +3,7 @@ export class User {
   username: String = '';
   password: String = '';
   repassword: String = ''
-  roles;
+  role: String = ''
 
   constructor() {
   }

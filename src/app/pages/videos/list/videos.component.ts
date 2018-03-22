@@ -13,7 +13,7 @@ export class VideosComponent implements OnInit {
   iframe_html: any;
   youtubeUrl = 'https://www.youtube.com/watch?v=8FNwzhfPCGw';
   videos;
-  searchText
+  searchText;
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private embedService: EmbedVideoService,
               public videoService: VideoService, private router: Router) {

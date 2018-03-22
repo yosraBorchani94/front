@@ -9,10 +9,12 @@ import {Router} from '@angular/router';
 
 export class NavbarComponent implements OnInit {
 username;
+role
   constructor(public router: Router) { }
 
   ngOnInit() {
     this.username = sessionStorage.getItem('username');
+    this.role = sessionStorage.getItem('role');
   }
   onLogOut () {
     this.router.navigateByUrl('/login');

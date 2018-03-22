@@ -19,7 +19,7 @@ export class EventService {
       this.loadToken();
     }
     return this.http.get(this.host + '/event',
-      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+      {headers: new HttpHeaders({'Authorization':  this.jwtToken})});
   }
 
   getEventFromAcceptedEvent(id) {
