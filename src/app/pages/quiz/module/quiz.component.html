@@ -1,0 +1,61 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    <h4 class="card-title">Modules </h4>
+                  </div>
+                  <div class="card-block">
+                    <!--List Events Start-->
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                    <hr>
+                    <button type="button" class="btn btn-primary" (click)="newModule()" >New Module</button>
+                    <table show-filter="true" class="table">
+                      <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Time</th>
+                        <th>number of questions</th>
+                        <th>Operations</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr  *ngFor="let m of modules |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
+                        <td>{{m.nom}}</td>
+                        <td>{{m.duree}}</td>
+                        <td>{{m.nbr_questions}}</td>
+                        <td>
+                          <a class="success p-0" data-original-title="" title=""(click)="onUpadate(m.id)">
+                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                          </a>
+                          <a class="danger" data-original-title="" title="" (click)="onDelete(m)">
+                            <i class="ft-trash font-medium-3"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </tbody>
+                    </table>
+                    <!--List Events Ends-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

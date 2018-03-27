@@ -39,7 +39,13 @@ import {VideoService} from './service/video.service';
 import { AddVideoComponent } from './pages/videos/add-video/add-video.component';
 import { ViewVideoComponent } from './pages/videos/view-video/view-video.component';
 import { UpdateVideoComponent } from './pages/videos/update-video/update-video.component';
-import { CustomFormsModule } from 'ng4-validators'
+import { CustomFormsModule } from 'ng4-validators';
+import { QuizComponent } from './pages/quiz/module/quiz.component';
+import { AddModuleComponent } from './pages/quiz/module/add-module/add-module.component'
+import { ModuleService } from  '././service/module.service';
+import { UpdateModuleComponent } from './pages/quiz/module/update-module/update-module.component';
+import { QuizTestComponent } from './pages/quiz/quiz-test/listQuiz/quiz-test.component';
+import { AddQuizComponent } from './pages/quiz/quiz-test/add-quiz/add-quiz.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -59,7 +65,12 @@ import { CustomFormsModule } from 'ng4-validators'
         VideosComponent,
         AddVideoComponent,
         ViewVideoComponent,
-        UpdateVideoComponent
+        UpdateVideoComponent,
+        QuizComponent,
+        AddModuleComponent,
+        UpdateModuleComponent,
+        QuizTestComponent,
+        AddQuizComponent
 
 
     ],
@@ -85,7 +96,7 @@ import { CustomFormsModule } from 'ng4-validators'
         EmbedVideo.forRoot(),
         CustomFormsModule
     ],
-    providers: [ AuthenticationService, UsersService, FileUploadService , EventService , VideoService],
+    providers: [ AuthenticationService, UsersService, FileUploadService , EventService , VideoService, ModuleService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

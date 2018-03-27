@@ -18,6 +18,11 @@ import {VideosComponent} from './pages/videos/list/videos.component';
 import {AddVideoComponent} from './pages/videos/add-video/add-video.component';
 import {ViewVideoComponent} from './pages/videos/view-video/view-video.component';
 import {UpdateVideoComponent} from './pages/videos/update-video/update-video.component';
+import {QuizComponent} from './pages/quiz/module/quiz.component';
+import { AddModuleComponent } from './pages/quiz/module/add-module/add-module.component';
+import {UpdateModuleComponent} from './pages/quiz/module/update-module/update-module.component';
+import {QuizTestComponent} from './pages/quiz/quiz-test/listQuiz/quiz-test.component';
+import {AddQuizComponent} from './pages/quiz/quiz-test/add-quiz/add-quiz.component';
 
 
 
@@ -77,6 +82,21 @@ const appRoutes: Routes = [
   ,
   { path: 'updateVideo/:id',
     component: UpdateVideoComponent,
+  },
+  { path: 'module',
+    component: QuizComponent,
+  },
+  { path: 'addModule',
+    component: AddModuleComponent,
+  },
+  { path: 'updateModule/:id',
+    component: UpdateModuleComponent,
+  },
+  { path: 'quiz',
+    component: QuizTestComponent,
+  },
+  { path: 'addQuiz',
+    component: AddQuizComponent,
   }
 
 ];
