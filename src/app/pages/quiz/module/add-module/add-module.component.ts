@@ -10,7 +10,9 @@ import {ModuleService} from '../../../../service/module.service';
 })
 export class AddModuleComponent implements OnInit {
 
+  modules;
   module;
+
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -19,22 +21,37 @@ export class AddModuleComponent implements OnInit {
   }
 
   onSaveModule(module) {
-    if (module.duree < 0 )  {
+    if (module.duree < 0) {
       this.toastr.warning('Please enter a valid duration', 'Warning!');
-    } else  if (module.nbr_question < 0) {
+    } else if (module.nbr_question < 0) {
       this.toastr.warning('Please enter a valid number of questions', 'Warning!');
     } else {
-      this.moduleService.saveModule(module)
-        .subscribe((data) => {
-            this.module = data;
-            this.toastr.success('New module created', 'Success!');
-            setTimeout(() => {
-              this.router.navigateByUrl('/module');
-            }, 2000);
+      this.moduleService.getModules()
+        .subscribe(data => {
+            this.modules = data;
+            this.modules.forEach(a => {
+              if (a.nom === module.nom) {
+                this.toastr.warning('duplicated module name', 'Warning!');
+              } else {
+                this.moduleService.saveModule(module)
+                  .subscribe((data1) => {
+                      this.module = data1;
+                      this.toastr.success('New module created', 'Success!');
+                      setTimeout(() => {
+                        this.router.navigateByUrl('/module');
+                      }, 2000);
+                    },
+                    err => {
+                      console.log(err);
+                    });
+              }
+            })
           },
           err => {
             console.log(err);
           });
+
+
     }
   }
 

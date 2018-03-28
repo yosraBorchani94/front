@@ -23,6 +23,7 @@ import { AddModuleComponent } from './pages/quiz/module/add-module/add-module.co
 import {UpdateModuleComponent} from './pages/quiz/module/update-module/update-module.component';
 import {QuizTestComponent} from './pages/quiz/quiz-test/listQuiz/quiz-test.component';
 import {AddQuizComponent} from './pages/quiz/quiz-test/add-quiz/add-quiz.component';
+import {UpdateQuizComponent} from './pages/quiz/quiz-test/update-quiz/update-quiz.component';
 
 
 
@@ -97,6 +98,9 @@ const appRoutes: Routes = [
   },
   { path: 'addQuiz',
     component: AddQuizComponent,
+  },
+  { path: 'updateQuiz/:id',
+    component: UpdateQuizComponent,
   }
 
 ];

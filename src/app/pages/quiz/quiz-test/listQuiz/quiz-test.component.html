@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black"
+       data-image="assets/img/sidebar-bg/01.jpg">
     <app-sidebar></app-sidebar>
     <div class="sidebar-background"></div>
   </div>
   <div class="main-panel">
     <app-navbar></app-navbar>
-
     <div class="main-content">
       <div class="content-wrapper">
         <div class="container-fluid">
@@ -17,37 +17,61 @@
                     <h4 class="card-title">Events </h4>
                   </div>
                   <div class="card-block">
-                    <!--List Events Start-->
-                    <!--<input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">-->
+                    <!--Questions Start-->
+                    <ng-template #content let-c="close" let-d="dismiss">
+                      <div class="modal-header">
+                        <h4 class="modal-title">View Question</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><b>Question : </b> {{questionModal}}</p>
+                        <p><b>Answers: </b> </p>
+                        <div *ngFor=" let am of answersModal">
+                          {{ am.answerName}}
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+                      </div>
+                    </ng-template>
+
+
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
                     <hr>
-                    <button type="button" class="btn btn-primary" (click)="newQuestion()" >New Question</button>
-                    <!--<table show-filter="true" class="table">-->
-                      <!--<thead>-->
-                      <!--<tr>-->
-                        <!--<th>Title</th>-->
-                        <!--<th>Start Date</th>-->
-                        <!--<th>End Date</th>-->
-                        <!--<th>Operations</th>-->
-                      <!--</tr>-->
-                      <!--</thead>-->
-                      <!--<tbody>-->
-                      <!--<tr  *ngFor="let e of events |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">-->
-                        <!--<td>{{e.title}}</td>-->
-                        <!--<td>{{e.startDate | date:'yyyy-MM-dd HH:mm a'}}</td>-->
-                        <!--<td>{{e.endDate | date:'yyyy-MM-dd HH:mm a'}}</td>-->
-                        <!--<td>-->
-                          <!--<a class="success p-0" data-original-title="" title=""(click)="onUpadate(e.id)">-->
-                            <!--<i class="ft-edit-2 font-medium-3 mr-2"></i>-->
-                          <!--</a>-->
-                          <!--<a class="danger" data-original-title="" title="" (click)="onDelete(e)">-->
-                            <!--<i class="ft-trash font-medium-3"></i>-->
-                          <!--</a>-->
-                        <!--</td>-->
-                      <!--</tr>-->
-                      <!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
-                      <!--</tbody>-->
-                    <!--</table>-->
-                    <!--List Events Ends-->
+                    <button type="button" class="btn btn-primary" (click)="newQuestion()">New Question</button>
+                    <table show-filter="true" class="table">
+                      <thead>
+                      <tr>
+                        <th>Question</th>
+                        <th>Operations</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr
+                        *ngFor="let q of questions |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
+                        <td> {{q.questionName}}</td>
+                        <td>
+                          <a class="primary" data-original-title="" title="" (click)="open(content,q.questionName,q.id)">
+                            <i class="ft-eye font-medium-3 mr-2"></i>
+                          </a>
+                          <a class="success p-0" data-original-title="" title="" (click)="onUpadate(q.id)">
+                            <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                          </a>
+                          <a class="danger" data-original-title="" title="" (click)="onDelete(q)">
+                            <i class="ft-trash font-medium-3"></i>
+                          </a>
+
+
+
+                        </td>
+                      </tr>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </tbody>
+                    </table>
+                    <!--Questions Ends-->
                   </div>
                 </div>
               </div>

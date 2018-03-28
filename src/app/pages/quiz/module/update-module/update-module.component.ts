@@ -19,7 +19,6 @@ export class UpdateModuleComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('here')
     this.moduleService.getModule(this.idModule)
       .subscribe(data => {
         this.module = data;

@@ -64,4 +64,6 @@ export class EventService {
     return this.http.get(this.host + '/eventNotification/',
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
+
+
 }
