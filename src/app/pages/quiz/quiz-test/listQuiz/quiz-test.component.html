@@ -27,9 +27,9 @@
                       </div>
                       <div class="modal-body">
                         <p><b>Question : </b> {{questionModal}}</p>
-                        <p><b>Answers: </b> </p>
+                        <p><b>Answers: </b></p>
                         <div *ngFor=" let am of answersModal">
-                          {{ am.answerName}}
+                          <li>{{ am.answerName}}</li>
                         </div>
 
                       </div>
@@ -54,18 +54,19 @@
                         *ngFor="let q of questions |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
                         <td> {{q.questionName}}</td>
                         <td>
-                          <a class="primary" data-original-title="" title="" (click)="open(content,q.questionName,q.id)">
+                          <a class="primary" data-original-title="" title=""
+                             (click)="open(content,q.questionName,q.id)">
                             <i class="ft-eye font-medium-3 mr-2"></i>
                           </a>
+                            <a class="info p-0" data-original-title="Add Answer" title="Add Answer" (click)="newAnswer(q.id)">
+                              <i class="ft-plus-square font-medium-3 mr-2"></i>
+                            </a>
                           <a class="success p-0" data-original-title="" title="" (click)="onUpadate(q.id)">
                             <i class="ft-edit-2 font-medium-3 mr-2"></i>
                           </a>
                           <a class="danger" data-original-title="" title="" (click)="onDelete(q)">
                             <i class="ft-trash font-medium-3"></i>
                           </a>
-
-
-
                         </td>
                       </tr>
                       <pagination-controls (pageChange)="p = $event"></pagination-controls>

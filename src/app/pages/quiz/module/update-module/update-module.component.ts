@@ -11,7 +11,6 @@ import {ModuleService} from '../../../../service/module.service';
 export class UpdateModuleComponent implements OnInit {
   idModule;
   module: any;
-
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router,
               public activatedRoute: ActivatedRoute, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -22,7 +21,6 @@ export class UpdateModuleComponent implements OnInit {
     this.moduleService.getModule(this.idModule)
       .subscribe(data => {
         this.module = data;
-        console.log(this.module);
       }, err => {
         console.log(err);
       });
@@ -44,11 +42,13 @@ export class UpdateModuleComponent implements OnInit {
           },
           err => {
             console.log(err);
+            this.toastr.warning('Duplicate module name', 'warning!');
           });
     }
   }
-    returnToModule() {
-      this.router.navigate(['/module']);
-    }
 
+  returnToModule() {
+    this.router.navigate(['/module']);
   }
+
+}

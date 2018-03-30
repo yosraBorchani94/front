@@ -3,8 +3,6 @@ export class Module {
     nom: String = '';
     duree: String = '';
     nbr_questions: number ;
-
-
     constructor() {
     }
   }

@@ -26,32 +26,18 @@ export class AddModuleComponent implements OnInit {
     } else if (module.nbr_question < 0) {
       this.toastr.warning('Please enter a valid number of questions', 'Warning!');
     } else {
-      this.moduleService.getModules()
-        .subscribe(data => {
-            this.modules = data;
-            this.modules.forEach(a => {
-              if (a.nom === module.nom) {
-                this.toastr.warning('duplicated module name', 'Warning!');
-              } else {
-                this.moduleService.saveModule(module)
-                  .subscribe((data1) => {
-                      this.module = data1;
-                      this.toastr.success('New module created', 'Success!');
-                      setTimeout(() => {
-                        this.router.navigateByUrl('/module');
-                      }, 2000);
-                    },
-                    err => {
-                      console.log(err);
-                    });
-              }
-            })
+      this.moduleService.saveModule(module)
+        .subscribe((data1) => {
+            this.module = data1;
+            this.toastr.success('New module created', 'Success!');
+            setTimeout(() => {
+              this.router.navigateByUrl('/module');
+            }, 2000);
           },
           err => {
             console.log(err);
+            this.toastr.warning('Duplicat module name', 'warning!');
           });
-
-
     }
   }
 

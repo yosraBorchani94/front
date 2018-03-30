@@ -13,12 +13,15 @@ export class QuizTestComponent implements OnInit {
   searchText;
   questions;
   answers;
+  question;
   isClicked = false;
   closeResult: string;
   questionModal;
   answersModal;
+  isAnswers;
 
-  constructor(private modalService: NgbModal, public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
+  constructor(private modalService: NgbModal, public toastr: ToastsManager,
+              vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -27,6 +30,17 @@ export class QuizTestComponent implements OnInit {
     this.moduleService.getQuestions()
       .subscribe(data => {
           this.questions = data;
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  showButtonAdd(id) {
+    this.moduleService.isAnswers(id)
+      .subscribe(data => {
+          this.isAnswers = data;
+          console.log( this.isAnswers);
         },
         err => {
           console.log(err);
@@ -64,6 +78,10 @@ export class QuizTestComponent implements OnInit {
     this.router.navigateByUrl('/addQuiz');
   }
 
+  newAnswer(id) {
+    this.router.navigate(['/addAnswer/', id]);
+  }
+
   showAnswers(id) {
     this.moduleService.getAnswersOfQuestion(id)
       .subscribe(data => {
@@ -83,9 +101,11 @@ export class QuizTestComponent implements OnInit {
     this.moduleService.deleteQuestion(question.id)
       .subscribe(data => {
         this.questions.splice(this.questions.indexOf(question), 1);
+        this.toastr.success('Question:  ' + question.questionName + ' deleted', 'Success!');
       }, err => {
-        this.toastr.success('module:  ' + question.questionName + ' deleted', 'Success!');
+
         console.log(err);
+        this.toastr.warning('Question not deleted', 'Warning!');
       });
   }
 }

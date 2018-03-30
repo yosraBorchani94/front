@@ -46,7 +46,8 @@ import { ModuleService } from  '././service/module.service';
 import { UpdateModuleComponent } from './pages/quiz/module/update-module/update-module.component';
 import { QuizTestComponent } from './pages/quiz/quiz-test/listQuiz/quiz-test.component';
 import { AddQuizComponent } from './pages/quiz/quiz-test/add-quiz/add-quiz.component';
-import { UpdateQuizComponent } from './pages/quiz/quiz-test/update-quiz/update-quiz.component'
+import { UpdateQuizComponent } from './pages/quiz/quiz-test/update-quiz/update-quiz.component';
+import { AddAnswersComponent } from './pages/quiz/quiz-test/add-answers/add-answers.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -72,7 +73,8 @@ import { UpdateQuizComponent } from './pages/quiz/quiz-test/update-quiz/update-q
         UpdateModuleComponent,
         QuizTestComponent,
         AddQuizComponent,
-        UpdateQuizComponent
+        UpdateQuizComponent,
+        AddAnswersComponent
 
 
     ],

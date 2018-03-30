@@ -20,40 +20,43 @@
                   </div>
                   <div class="card-body">
                     <div class="card-block">
-
                       <div class="form-group">
-                        <label class="control-label">Module:</label>
+
+                        <!--  Answers part start !-->
+                        <label class="control-label">Module name:</label>
                         <br>
                         <select  class="form-control" [(ngModel)]="ModuleName" name="module">
-                          <option *ngFor="let m of modules" [ngValue]="m">{{m.nom}}</option>
+                          <option *ngFor="let m of modules" [ngValue]="m" required="true">{{m.nom}}</option>
                         </select>
                       </div>
                       <input class="form-control" [(ngModel)]="question.questionName" type="text" name="questionName"  placeholder="Question Name" required/>
+                      <br/>
                       <br>
-                      <label class="control-label">Answers:</label>
+
+                      <label class="control-label">Answer:</label>
                       <hr>
-                      <input class="form-control" [(ngModel)]="tabAnswer[0]" type="text" name="response1"  placeholder="Answer option 1" required/>
+                      <input class="form-control" [(ngModel)]="tab[0].answerName" type="text" name="response1"  placeholder="Answer option 1" required/>
                       <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="isCorrect1"  name="checkbox1" value="true">
+                        <input type="checkbox" [(ngModel)]="tab[0].correct"  name="checkbox1" value="true">
                       </label><br/>
-                      <br>
-                      <input class="form-control"  [(ngModel)]="tabAnswer[1]" type="text" name="response2"  placeholder="Answer option  2" required/>
+                      <br/>
+                      <input class="form-control" [(ngModel)]="tab[1].answerName" type="text" name="response2"  placeholder="Answer option 2" required/>
                       <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="isCorrect2" name="checkbox2" value="true">
+                        <input type="checkbox" [(ngModel)]="tab[1].correct"  name="checkbox2" value="true">
                       </label><br/>
-                      <br>
-                      <input class="form-control"  [(ngModel)]="tabAnswer[2]" type="text" name="response3"  placeholder="Answer option  3" required/>
+                      <br/>
+                      <input class="form-control" [(ngModel)]="tab[2].answerName" type="text" name="response3"  placeholder="Answer option 3" required/>
                       <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="isCorrect3" name="checkbox3" value="true">
+                        <input type="checkbox" [(ngModel)]="tab[2].correct"  name="checkbox3" value="true">
                       </label><br/>
-                      <br>
-                      <input class="form-control"  [(ngModel)]="tabAnswer[3]" type="text" name="response4"  placeholder="Answer option  4" required/>
+                      <br/>
+                      <input class="form-control" [(ngModel)]="tab[3].answerName" type="text" name="response4"  placeholder="Answer option 4" required/>
                       <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="isCorrect4" name="checkbox4" value="true">
+                        <input type="checkbox" [(ngModel)]="tab[3].correct"  name="checkbox4" value="true">
                       </label><br/>
-                      <br>
                       <button  class="btn btn-primary" (click)="updateQuestion()">Save</button>
                       <button type="button" (click)="returnToQuiz()" class="btn btn-danger">Cancel</button>
+                      <!--  Answers part End !-->
 
                     </div>
                   </div>
