@@ -16,48 +16,63 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Update Question </h4>
+                    <h4 class="card-title">Update Quiz </h4>
                   </div>
                   <div class="card-body">
                     <div class="card-block">
-                      <div class="form-group">
+                      <form #f="ngForm">
+                        <div class="form-group">
+                          <label class="control-label">Module:</label>
+                          <br>
+                          <select class="form-control" [(ngModel)]="ModuleName" name="module">
+                            <option *ngFor="let m of modules" [ngValue]="m">{{m.nom}}</option>
+                          </select>
+                          <br>
+                          <label class="control-label">Question:</label>
+                          <input class="form-control" [(ngModel)]="quiz.questionName" type="text" name="questionName"
+                                 placeholder="Question Name" required/>
+                          <input type="hidden" [(ngModel)]="quiz.id" name="id"/>
+                          <br>
+                          <br>
+                          <label class="control-label">Answer:</label>
+                          <hr>
+                          <input class="form-control" [(ngModel)]="quiz.choice1" type="text" name="choice1"
+                                 placeholder="Answer option 1" required/>
+                          <br>
+                          <label class="container"> Correct answer
+                            <input type="checkbox" [(ngModel)]="quiz.checkbox1" name="checkbox1" value="true">
+                            <span class="checkmark"></span>
+                          </label><br/>
 
-                        <!--  Answers part start !-->
-                        <label class="control-label">Module name:</label>
+                          <input class="form-control" [(ngModel)]="quiz.choice2" type="text" name="choice2"
+                                 placeholder="Answer option 2" required/>
+                          <br>
+                          <label class="container">Correct answer
+                            <input type="checkbox" [(ngModel)]="quiz.checkbox2" name="checkbox2" value="true">
+                            <span class="checkmark"></span>
+                          </label><br/>
+
+                          <input class="form-control" [(ngModel)]="quiz.choice3" type="text" name="choice3"
+                                 placeholder="Answer option 3" required/>
+                          <br>
+                          <label class="container">Correct answer
+                            <input type="checkbox" [(ngModel)]="quiz.checkbox3" name="checkbox3" value="true">
+                            <span class="checkmark"></span>
+                          </label><br/>
+
+                          <input class="form-control" [(ngModel)]="quiz.choice4" type="text" name="choice4"
+                                 placeholder="Answer option 1" required/>
+                          <br>
+                          <label class="container">Correct answer
+                            <input type="checkbox" [(ngModel)]="quiz.checkbox4" name="checkbox4" value="true">
+                            <span class="checkmark"></span>
+                          </label><br/>
+                        </div>
                         <br>
-                        <select  class="form-control" [(ngModel)]="ModuleName" name="module">
-                          <option *ngFor="let m of modules" [ngValue]="m" required="true">{{m.nom}}</option>
-                        </select>
-                      </div>
-                      <input class="form-control" [(ngModel)]="question.questionName" type="text" name="questionName"  placeholder="Question Name" required/>
-                      <br/>
-                      <br>
-
-                      <label class="control-label">Answer:</label>
-                      <hr>
-                      <input class="form-control" [(ngModel)]="tab[0].answerName" type="text" name="response1"  placeholder="Answer option 1" required/>
-                      <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="tab[0].correct"  name="checkbox1" value="true">
-                      </label><br/>
-                      <br/>
-                      <input class="form-control" [(ngModel)]="tab[1].answerName" type="text" name="response2"  placeholder="Answer option 2" required/>
-                      <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="tab[1].correct"  name="checkbox2" value="true">
-                      </label><br/>
-                      <br/>
-                      <input class="form-control" [(ngModel)]="tab[2].answerName" type="text" name="response3"  placeholder="Answer option 3" required/>
-                      <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="tab[2].correct"  name="checkbox3" value="true">
-                      </label><br/>
-                      <br/>
-                      <input class="form-control" [(ngModel)]="tab[3].answerName" type="text" name="response4"  placeholder="Answer option 4" required/>
-                      <label>Correct answer
-                        <input type="checkbox" [(ngModel)]="tab[3].correct"  name="checkbox4" value="true">
-                      </label><br/>
-                      <button  class="btn btn-primary" (click)="updateQuestion()">Save</button>
-                      <button type="button" (click)="returnToQuiz()" class="btn btn-danger">Cancel</button>
-                      <!--  Answers part End !-->
-
+                        <br>
+                        <button (click)="onUpdateQuiz()" class="btn btn-primary">Save</button>
+                        <button type="button" (click)="returnToQuiz()" class="btn btn-danger">Cancel</button>
+                      </form>
                     </div>
                   </div>
                 </div>

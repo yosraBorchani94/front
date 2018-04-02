@@ -58,7 +58,7 @@ export class ModuleService {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.post(this.host + '/question/' + value.module.id, value,
+    return this.http.post(this.host + '/quiz/' + value.module.id, value,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
@@ -66,15 +66,7 @@ export class ModuleService {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.get(this.host + '/question',
-      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
-  }
-
-  getAnswersOfQuestion(id) {
-    if (this.jwtToken == null) {
-      this.loadToken();
-    }
-    return this.http.get(this.host + '/answersOfQuestion/' + id,
+    return this.http.get(this.host + '/quiz',
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
@@ -82,55 +74,29 @@ export class ModuleService {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.delete(this.host + '/question/' + id, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+    return this.http.delete(this.host + '/quiz/' + id, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
   getQuestion(id) {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.get(this.host + '/question/' + id,
+    return this.http.get(this.host + '/quiz/' + id,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
-  updateQuestion(questionName, id , idQuestion , tab) {
+
+  updateQuestion(idModule, idQuestion, questionName, choice1, choice2, choice3, choice4, checkbox1,
+                 checkbox2, checkbox3, checkbox4, urlPicture) {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.put(this.host + '/updateQuestion/' + idQuestion, {'questionName' : questionName , 'moduleId' : id , 'tab' : tab},
+    return this.http.put(this.host + '/quiz/' + idModule,
+      {
+        'id': idQuestion, 'questionName': questionName, 'choice1': choice1, 'choice2': choice2, 'choice3': choice3, 'choice4': choice4,
+        'checkbox1': checkbox1, 'checkbox2': checkbox2, 'checkbox3': checkbox3, 'checkbox4': checkbox4, 'urlPicture': urlPicture
+      },
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
-
-
-// ******************** Answers section ************************ //
-  getAnswers() {
-    if (this.jwtToken == null) {
-      this.loadToken();
-    }
-    return this.http.get(this.host + '/answer',
-      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
-  }
-
-  checkedAnswer1(answer) {
-    return this.http.get(this.host + '/checkedAnwer/' + answer,
-      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
-  }
-
-  addAnswers(value, idQuestion) {
-
-    if (this.jwtToken == null) {
-      this.loadToken();
-    }
-    return this.http.post(this.host + '/answer/' + idQuestion, value ,
-      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
-  }
-
-  isAnswers (id) {
-    if (this.jwtToken == null) {
-      this.loadToken();
-    }
-    return this.http.get(this.host + '/isAnswers/' + id,
-      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
-  }
-
 }
+

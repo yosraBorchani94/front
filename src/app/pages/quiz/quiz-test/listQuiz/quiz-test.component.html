@@ -28,10 +28,10 @@
                       <div class="modal-body">
                         <p><b>Question : </b> {{questionModal}}</p>
                         <p><b>Answers: </b></p>
-                        <div *ngFor=" let am of answersModal">
-                          <li>{{ am.answerName}}</li>
-                        </div>
-
+                          <li>{{ answersModal.choice1}}</li>
+                          <li>{{ answersModal.choice2}}</li>
+                          <li>{{ answersModal.choice3}}</li>
+                          <li>{{ answersModal.choice4}}</li>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
@@ -58,9 +58,6 @@
                              (click)="open(content,q.questionName,q.id)">
                             <i class="ft-eye font-medium-3 mr-2"></i>
                           </a>
-                            <a class="info p-0" data-original-title="Add Answer" title="Add Answer" (click)="newAnswer(q.id)">
-                              <i class="ft-plus-square font-medium-3 mr-2"></i>
-                            </a>
                           <a class="success p-0" data-original-title="" title="" (click)="onUpadate(q.id)">
                             <i class="ft-edit-2 font-medium-3 mr-2"></i>
                           </a>

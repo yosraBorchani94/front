@@ -12,13 +12,11 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class QuizTestComponent implements OnInit {
   searchText;
   questions;
-  answers;
   question;
-  isClicked = false;
   closeResult: string;
   questionModal;
-  answersModal;
-  isAnswers;
+  answersModal: any = '';
+  quiz;
 
   constructor(private modalService: NgbModal, public toastr: ToastsManager,
               vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
@@ -36,27 +34,15 @@ export class QuizTestComponent implements OnInit {
         });
   }
 
-  showButtonAdd(id) {
-    this.moduleService.isAnswers(id)
-      .subscribe(data => {
-          this.isAnswers = data;
-          console.log( this.isAnswers);
-        },
-        err => {
-          console.log(err);
-        });
-  }
-
   open(content, questionName, id) {
     this.questionModal = questionName;
-    this.moduleService.getAnswersOfQuestion(id)
+    this.moduleService.getQuestion(id)
       .subscribe(data => {
           this.answersModal = data;
         },
         err => {
           console.log(err);
         });
-
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -76,21 +62,6 @@ export class QuizTestComponent implements OnInit {
 
   newQuestion() {
     this.router.navigateByUrl('/addQuiz');
-  }
-
-  newAnswer(id) {
-    this.router.navigate(['/addAnswer/', id]);
-  }
-
-  showAnswers(id) {
-    this.moduleService.getAnswersOfQuestion(id)
-      .subscribe(data => {
-          this.answers = data;
-          this.isClicked = true;
-        },
-        err => {
-          console.log(err);
-        });
   }
 
   onUpadate(id) {
