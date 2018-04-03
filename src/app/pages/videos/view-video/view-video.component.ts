@@ -11,7 +11,7 @@ import {VideoService} from '../../../service/video.service';
 export class ViewVideoComponent implements OnInit {
   iframe_html: any;
   idVideo;
-  video;
+  video: any = '';
   namevideo;
   descriptionvideo;
   constructor( public activatedRoute: ActivatedRoute , public videoService: VideoService , private embedService: EmbedVideoService) {

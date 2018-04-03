@@ -10,7 +10,7 @@ import {ToastsManager} from 'ng2-toastr';
   styleUrls: ['./update.component.scss']
 })
 export class UpdateComponent implements OnInit {
-  user;
+  user: any = '';
   idUser: number;
   roles;
   roleName;

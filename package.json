@@ -41,6 +41,7 @@
     "ng2-toastr": "^4.1.2",
     "ng4-validators": "^5.1.0",
     "ngx-chips": "^1.6.7",
+    "ngx-countdown-timer": "^0.1.9",
     "ngx-embed-video": "^0.3.0",
     "ngx-pagination": "^3.1.0",
     "node-sass": "^4.5.3",

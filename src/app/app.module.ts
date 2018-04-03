@@ -47,9 +47,10 @@ import {UpdateModuleComponent} from './pages/quiz/module/update-module/update-mo
 import {QuizTestComponent} from './pages/quiz/quiz-test/listQuiz/quiz-test.component';
 import {AddQuizComponent} from './pages/quiz/quiz-test/add-quiz/add-quiz.component';
 import {UpdateQuizComponent} from './pages/quiz/quiz-test/update-quiz/update-quiz.component';
-
-import { AddPictureComponent } from './pages/quiz/quiz-test/add-picture/add-picture.component'
-
+import { AddPictureComponent } from './pages/quiz/quiz-test/add-picture/add-picture.component';
+import { PassQuizComponent } from './pages/pass-quiz/pass-quiz.component'
+import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { ListQuizComponent } from './pages/pass-quiz/list-quiz/list-quiz.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,9 @@ import { AddPictureComponent } from './pages/quiz/quiz-test/add-picture/add-pict
     QuizTestComponent,
     AddQuizComponent,
     UpdateQuizComponent,
-    AddPictureComponent
+    AddPictureComponent,
+    PassQuizComponent,
+    ListQuizComponent
 
 
   ],
@@ -100,7 +103,9 @@ import { AddPictureComponent } from './pages/quiz/quiz-test/add-picture/add-pict
     OwlNativeDateTimeModule,
     ToastModule.forRoot(),
     EmbedVideo.forRoot(),
-    CustomFormsModule
+    CustomFormsModule,
+    CountdownTimerModule.forRoot()
+
   ],
   providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService],
   bootstrap: [AppComponent]

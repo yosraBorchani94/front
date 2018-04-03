@@ -98,5 +98,23 @@ export class ModuleService {
       },
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
+
+  convertMinutes(duree) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/convertMinutes/' + duree,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  getAllQuestionFromModule(id) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getAllQuestionFromModule/' + id,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+
 }
 

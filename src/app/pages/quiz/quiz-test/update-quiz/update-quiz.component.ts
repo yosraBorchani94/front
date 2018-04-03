@@ -60,7 +60,6 @@ export class UpdateQuizComponent implements OnInit {
         this.quiz.checkbox1, this.quiz.checkbox2, this.quiz.checkbox3, this.quiz.checkbox4 , this.quiz.urlPicture)
         .subscribe(data => {
           this.updatedQuiz = data;
-          console.log(this.updatedQuiz.urlPicture);
           if (this.updatedQuiz.urlPicture === null) {
             this.toastr.success('Question updated', 'Success!');
             setTimeout(() => {

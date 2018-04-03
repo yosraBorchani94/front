@@ -28,10 +28,37 @@
                       <div class="modal-body">
                         <p><b>Question : </b> {{questionModal}}</p>
                         <p><b>Answers: </b></p>
-                          <li>{{ answersModal.choice1}}</li>
-                          <li>{{ answersModal.choice2}}</li>
-                          <li>{{ answersModal.choice3}}</li>
-                          <li>{{ answersModal.choice4}}</li>
+                        <li>{{ answersModal.choice1}}
+                        <span *ngIf="answersModal.checkbox1">
+                          <a class="success">
+                            <i class="ft-check"></i>
+                          </a>
+                        </span>
+                        </li>
+                        <li>{{ answersModal.choice2}}
+                          <span *ngIf="answersModal.checkbox2">
+                          <a class="success">
+                            <i class="ft-check"></i>
+                          </a>
+                        </span>
+                        </li>
+
+                        <li>{{ answersModal.choice3}}
+                          <span *ngIf="answersModal.checkbox3">
+                          <a class="success">
+                            <i class="ft-check"></i>
+                          </a>
+                        </span>
+                        </li>
+
+                        <li>{{ answersModal.choice4}}
+                          <span *ngIf="answersModal.checkbox4">
+                          <a class="success">
+                            <i class="ft-check"></i>
+                          </a>
+                        </span>
+                        </li>
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>

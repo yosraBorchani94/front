@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black"
+       data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-header">
+                    <h4 class="card-title">Pass the Quiz </h4>
+                    <table show-filter="true" class="table">
+                      <tbody>
+                      <tr *ngFor="let q of questionList.length ; let i = index ">
+                        <td>{{q[i].questionName}}
+                          <li>{{q[i].choice1}}</li>
+                          <li>{{q[i].choice2}}</li>
+                          <li>{{q[i].choice3}}</li>
+                          <li>{{q[i].choice4}}</li>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <div class="card-block">
+                    <!--Start-->
+
+                    <!--End-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

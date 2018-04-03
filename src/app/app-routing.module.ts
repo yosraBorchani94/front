@@ -25,6 +25,8 @@ import {QuizTestComponent} from './pages/quiz/quiz-test/listQuiz/quiz-test.compo
 import {AddQuizComponent} from './pages/quiz/quiz-test/add-quiz/add-quiz.component';
 import {UpdateQuizComponent} from './pages/quiz/quiz-test/update-quiz/update-quiz.component';
 import {AddPictureComponent} from './pages/quiz/quiz-test/add-picture/add-picture.component';
+import {PassQuizComponent} from './pages/pass-quiz/pass-quiz.component';
+import {ListQuizComponent} from './pages/pass-quiz/list-quiz/list-quiz.component';
 
 
 
@@ -105,6 +107,12 @@ const appRoutes: Routes = [
   },
   { path: 'addPicture/:id',
     component: AddPictureComponent,
+  },
+  { path: 'passQuiz/:id',
+    component: PassQuizComponent,
+  },
+  { path: 'listQuiz',
+    component: ListQuizComponent,
   }
 
 ];

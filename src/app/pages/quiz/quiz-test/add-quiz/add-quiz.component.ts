@@ -48,7 +48,6 @@ export class AddQuizComponent implements OnInit {
     } else if (value.module === undefined) {
       this.toastr.warning('choose a module ', 'Warning !');
     } else {
-      console.log(value.checkbox1 + ' ' + value.checkbox2 + ' ' + value.checkbox3 + ' ' + value.checkbox4);
       this.moduleService.addQuestion(value)
     .subscribe((data1) => {
       this.quiz = data1;

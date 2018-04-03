@@ -10,7 +10,7 @@ import {ToastsManager} from 'ng2-toastr';
 })
 export class UpdateVideoComponent implements OnInit {
   idVideo;
-  video: any;
+  video: any = '';
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public activatedRoute: ActivatedRoute,
               public videoService: VideoService, private router: Router) {

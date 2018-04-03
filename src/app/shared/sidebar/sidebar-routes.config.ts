@@ -43,9 +43,16 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       { path: '/module', title: 'module', icon: 'ft-folder', class: '', badge: '',
         badgeClass: '', isExternalLink: false, submenu: []},
-      { path: '/quiz', title: 'Quiz', icon: 'ft-file', class: '', badge: '',
+      { path: '/quiz', title: 'Quiz', icon: 'ft-edit', class: '', badge: '',
         badgeClass: '', isExternalLink: false, submenu: []},
     ]
-  }
+  },
+  {
+    path: '/listQuiz', title: 'Pass a quiz', icon: 'ft-align-left', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+  },
+  {
+    path: '/contact', title: 'Contact', icon: 'ft-phone', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+  },
+
 
 ];
