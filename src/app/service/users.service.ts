@@ -71,4 +71,12 @@ export class UsersService {
     return this.http.post(this.host + '/event', event,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
+
+  getUserByUsername(username) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/userByUsername/' + username,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 }

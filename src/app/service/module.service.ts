@@ -115,6 +115,22 @@ export class ModuleService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  addUserToModule(idModule, idUser) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+
+    return this.http.post(this.host + '/addUserToModule/', {'id': 0, 'idModule': idModule, 'idUser': idUser},
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  getScore(arrayAnswers) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.post(this.host + '/calculScore', arrayAnswers,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 
 }
 

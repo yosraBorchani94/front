@@ -6,6 +6,8 @@ import {ModuleService} from '../../service/module.service';
 import {timer} from 'rxjs/observable/timer';
 import {take, map} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
+import {convertRuleOptions} from 'tslint/lib/configuration';
+import {UsersService} from '../../service/users.service';
 
 @Component({
   selector: 'app-pass-quiz',
@@ -14,12 +16,14 @@ import {Observable} from 'rxjs/Observable';
 })
 export class PassQuizComponent implements OnInit {
   idModule;
-  idquestions;
-  questionList: Array<any> = [];
-
+  idUser;
+  questionList;
+  username = sessionStorage.getItem('username');
+  user;
+  MyArrayAnswers = Array();
 
   constructor(public activatedRoute: ActivatedRoute, private http: HttpClient, public toastr: ToastsManager, vcr: ViewContainerRef,
-              private router: Router, public moduleService: ModuleService) {
+              private router: Router, public moduleService: ModuleService, public usersService: UsersService) {
     this.toastr.setRootViewContainerRef(vcr);
     this.idModule = activatedRoute.snapshot.params['id'];
   }
@@ -29,25 +33,53 @@ export class PassQuizComponent implements OnInit {
 
     this.moduleService.getAllQuestionFromModule(this.idModule)
       .subscribe(data => {
-        this.idquestions = data;
-        this.idquestions.forEach(id => {
-          this.getQuestion(id);
-        }, err => {
-          console.log(err);
-        });
-        console.log('questionList ', this.questionList, 'size ', this.questionList.length);
+        this.questionList = data;
       }, err => {
         console.log(err);
       });
-  }
 
-  getQuestion(id) {
-    this.moduleService.getQuestion(id)
+    this.usersService.getUserByUsername(this.username)
       .subscribe(data => {
-        this.questionList.push(data);
+        this.user = data;
+        this.idUser = this.user.id;
       }, err => {
         console.log(err);
       });
   }
 
+  returnResultQuiz() {
+    this.caluclScore();
+    // this.insertInModuleInstance();
+
+  }
+
+
+  caluclScore() {
+    console.log(this.MyArrayAnswers);
+    this.moduleService.getScore(this.MyArrayAnswers)
+      .subscribe(data => {
+      }, err => {
+        console.log(err);
+      });
+  }
+
+  insertInModuleInstance() {
+    this.moduleService.addUserToModule(this.idModule, this.idUser)
+      .subscribe(data => {
+        this.user = data;
+        this.idUser = this.user.id;
+      }, err => {
+        console.log(err);
+      });
+  }
+
+  test(value, event, id) {
+    if (event.target.checked) {
+      console.log('answer: ' + value + ' idQuestion: ' + id)
+      this.MyArrayAnswers.push(id + ':' + value);
+    } else if (!event.target.checked) {
+       console.log('u unchecked  answer: ' + value + ' idQuestion: ' + id );
+      this.MyArrayAnswers.splice(this.MyArrayAnswers.indexOf(id + ':' + value), 1)
+    }
+  }
 }

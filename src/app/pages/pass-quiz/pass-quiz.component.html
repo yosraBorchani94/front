@@ -18,17 +18,34 @@
                     <h4 class="card-title">Pass the Quiz </h4>
                     <table show-filter="true" class="table">
                       <tbody>
-                      <tr *ngFor="let q of questionList.length ; let i = index ">
-                        <td>{{q[i].questionName}}
-                          <li>{{q[i].choice1}}</li>
-                          <li>{{q[i].choice2}}</li>
-                          <li>{{q[i].choice3}}</li>
-                          <li>{{q[i].choice4}}</li>
+                      <tr *ngFor="let q of questionList;let i= index">
+                        <td>{{q.questionName}}
+                          <br>
+                          <label  class="container">
+                            <input type="checkbox"  name="checkbox1" value="true"  (change)="test(q.choice1,$event,q.id)">
+                            <span class="checkmark"></span> {{q.choice1}}
+                          </label><br/>
+
+                          <label  class="container">
+                            <input type="checkbox" name="checkbox2" value="true"  (change)="test(q.choice2,$event,q.id)">
+                            <span class="checkmark"></span> {{q.choice2}}
+                          </label><br/>
+
+                          <label  class="container">
+                            <input type="checkbox"  name="checkbox3" value="true"  (change)="test(q.choice3,$event,q.id)">
+                            <span class="checkmark"></span> {{q.choice3}}
+                          </label><br/>
+
+                          <label  class="container">
+                            <input type="checkbox" name="checkbox2" (change)="test(q.choice4,$event,q.id)">
+                            <span class="checkmark"></span> {{q.choice4}}
+                          </label><br/>
+
                         </td>
                       </tr>
                       </tbody>
                     </table>
-
+                    <button type="button" (click)="returnResultQuiz()" class="btn btn-success">Result</button>
                   </div>
                   <div class="card-block">
                     <!--Start-->

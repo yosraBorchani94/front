@@ -16,12 +16,10 @@ export class LoginPageComponent implements OnInit {
   onLogin(user) {
     this.authService.login(user)
       .subscribe(resp => {
-          // console.log(user)
           const jwt = resp.headers.get('Authorization');
           console.log('jwt' + jwt);
           this.authService.saveToken(jwt);
           sessionStorage.setItem('username', user.username);
-          sessionStorage.setItem('idUser', user.id)
           sessionStorage.setItem('role', this.authService.returnRole())
           this.router.navigateByUrl('/full-layout');
         },
