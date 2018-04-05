@@ -115,12 +115,11 @@ export class ModuleService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
-  addUserToModule(idModule, idUser) {
+  addUserToModule(idModule, idUser, score) {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-
-    return this.http.post(this.host + '/addUserToModule/', {'id': 0, 'idModule': idModule, 'idUser': idUser},
+    return this.http.post(this.host + '/addUserToModule', {'id:' : 0, 'score': score, 'idModule': idModule, 'idUser': idUser},
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
@@ -129,6 +128,23 @@ export class ModuleService {
       this.loadToken();
     }
     return this.http.post(this.host + '/calculScore', arrayAnswers,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  getQuestionFromModuleShuffle(id) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getQuestionFromModuleShuffle/' + id,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  /********* quiz instance *************/
+  addQuizInstance(idModuleInstance, MyArrayAnswers) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.post(this.host + '/addQuizInstance/' + idModuleInstance, MyArrayAnswers,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 

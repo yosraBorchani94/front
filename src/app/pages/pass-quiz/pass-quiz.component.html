@@ -1,13 +1,5 @@
 <div class="wrapper">
-  <div class="app-sidebar" data-active-color="white" data-background-color="black"
-       data-image="assets/img/sidebar-bg/01.jpg">
-    <app-sidebar></app-sidebar>
-    <div class="sidebar-background"></div>
-  </div>
   <div class="main-panel">
-    <app-navbar></app-navbar>
-
-    <div class="main-content">
       <div class="content-wrapper">
         <div class="container-fluid">
           <div class="row">
@@ -15,50 +7,49 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-header">
-                    <h4 class="card-title">Pass the Quiz </h4>
+                    <h2 class="card-title">Pass the Quiz </h2>
+                    <p  class="card-title"> <span class="ft-alert-triangle warning"> At least one answer is correct </span></p>
+                    <h2>{{countDown | async}}</h2>
+                    <h1>
+                      {{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
+                    </h1>
                     <table show-filter="true" class="table">
                       <tbody>
                       <tr *ngFor="let q of questionList;let i= index">
                         <td>{{q.questionName}}
+                          <div *ngIf="q.urlPicture !== null">
+                          </div>
                           <br>
-                          <label  class="container">
-                            <input type="checkbox"  name="checkbox1" value="true"  (change)="test(q.choice1,$event,q.id)">
+                          <label class="container">
+                            <input type="checkbox" name="checkbox1" value="true" (change)="test(q.choice1,$event,q.id)">
                             <span class="checkmark"></span> {{q.choice1}}
                           </label><br/>
 
-                          <label  class="container">
-                            <input type="checkbox" name="checkbox2" value="true"  (change)="test(q.choice2,$event,q.id)">
+                          <label class="container">
+                            <input type="checkbox" name="checkbox2" value="true" (change)="test(q.choice2,$event,q.id)">
                             <span class="checkmark"></span> {{q.choice2}}
                           </label><br/>
 
-                          <label  class="container">
-                            <input type="checkbox"  name="checkbox3" value="true"  (change)="test(q.choice3,$event,q.id)">
+                          <label class="container">
+                            <input type="checkbox" name="checkbox3" value="true" (change)="test(q.choice3,$event,q.id)">
                             <span class="checkmark"></span> {{q.choice3}}
                           </label><br/>
 
-                          <label  class="container">
+                          <label class="container">
                             <input type="checkbox" name="checkbox2" (change)="test(q.choice4,$event,q.id)">
                             <span class="checkmark"></span> {{q.choice4}}
                           </label><br/>
-
                         </td>
                       </tr>
                       </tbody>
                     </table>
-                    <button type="button" (click)="returnResultQuiz()" class="btn btn-success">Result</button>
-                  </div>
-                  <div class="card-block">
-                    <!--Start-->
-
-                    <!--End-->
+                    <button type="button" (click)="caluclScore()" class="btn btn-success">Result</button>
                   </div>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
     <app-footer></app-footer>
   </div>
-</div>
+

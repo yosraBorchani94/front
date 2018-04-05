@@ -31,7 +31,7 @@
                       <tr  *ngFor="let m of modules |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
                         <td>{{m.nom}}</td>
                         <td>
-                          <button type="button" (click)="PassTheTest(m.id)" class="btn btn-primary">Pass the test </button>
+                            <button type="button" (click)="PassTheTest(m.id)" class="btn btn-primary">Pass the test </button>
                         </td>
                       </tr>
                       <pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -13,7 +13,7 @@ export class ListQuizComponent implements OnInit {
   modules;
   searchText;
   idModule;
-
+  questionsFromModule;
   constructor(public activatedRoute: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
 
@@ -27,10 +27,25 @@ export class ListQuizComponent implements OnInit {
         err => {
           console.log(err);
         });
+
+
   }
 
   PassTheTest(id) {
     this.router.navigate(['/passQuiz', id]);
   }
+
+  // isActive(id) {
+  //   this.moduleService.getAllQuestionFromModule(id)
+  //     .subscribe(data => {
+  //         this.questionsFromModule = data;
+  //         console.log( this.questionsFromModule)
+  //       return true;
+  //       },
+  //       err => {
+  //         console.log(err);
+  //         return false;
+  //       });
+  // }
 
 }
