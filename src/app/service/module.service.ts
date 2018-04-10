@@ -52,6 +52,38 @@ export class ModuleService {
     return this.http.put(this.host + '/module/' + module.id, module, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  getModuleFromQuiz(idQuiz) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getModuleFromQuiz/' + idQuiz,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  getModulesSorted() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getModulesSorted',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  checkNumberOfQuestions(id) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/checkNumberOfQuestions/' + id,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  checkPassTheTest(idModule, username) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.post(this.host + '/checkPassTheTest/' + idModule, username,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
 // ******************** Question section ************************ //
 
   addQuestion(value) {
@@ -119,7 +151,7 @@ export class ModuleService {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.post(this.host + '/addUserToModule', {'id:' : 0, 'score': score, 'idModule': idModule, 'idUser': idUser},
+    return this.http.post(this.host + '/addUserToModule', {'id:': 0, 'score': score, 'idModule': idModule, 'idUser': idUser},
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 

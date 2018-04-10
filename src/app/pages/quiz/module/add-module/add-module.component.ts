@@ -12,7 +12,7 @@ export class AddModuleComponent implements OnInit {
 
   modules;
   module;
-
+  level;
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
   }

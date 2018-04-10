@@ -1,5 +1,6 @@
 <div class="wrapper">
-  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black"
+       data-image="assets/img/sidebar-bg/01.jpg">
     <app-sidebar></app-sidebar>
     <div class="sidebar-background"></div>
   </div>
@@ -28,10 +29,17 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  *ngFor="let m of modules |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
+                      <tr *ngFor="let m of modules |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
                         <td>{{m.nom}}</td>
                         <td>
-                            <button type="button" (click)="PassTheTest(m.id)" class="btn btn-primary">Pass the test </button>
+                          <div *ngIf="!m.totalQuestions">
+                          <span class="d-inline-block" tabindex="0" placement="top" ngbTooltip="Admin Still working on it">
+                            <button class="btn btn-outline-primary mr-1 mb-1" style="pointer-events: none;" type="button" disabled>Take the Quiz</button>
+                          </span>
+                          </div>
+                          <div *ngIf="m.totalQuestions">
+                            <button class="btn btn-outline-primary mr-1 mb-1" type="button" (click)="PassTheTest(m.id)">Take the Quiz</button>
+                          </div>
                         </td>
                       </tr>
                       <pagination-controls (pageChange)="p = $event"></pagination-controls>

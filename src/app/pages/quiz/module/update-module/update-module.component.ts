@@ -11,7 +11,6 @@ import {ModuleService} from '../../../../service/module.service';
 export class UpdateModuleComponent implements OnInit {
   idModule;
   module: any = '';
-
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router,
               public activatedRoute: ActivatedRoute, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);

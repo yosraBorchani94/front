@@ -24,8 +24,8 @@
                         <div class="form-group">
                           <label class="control-label">Module:</label>
                           <br>
-                          <select class="form-control" [(ngModel)]="ModuleName" name="module">
-                            <option *ngFor="let m of modules" [ngValue]="m">{{m.nom}}</option>
+                          <select class="form-control" [(ngModel)]="module.nom" name="module">
+                            <option *ngFor="let m of modules" [ngValue]="m.nom">{{m.nom}}</option>
                           </select>
                           <br>
                           <label class="control-label">Question:</label>

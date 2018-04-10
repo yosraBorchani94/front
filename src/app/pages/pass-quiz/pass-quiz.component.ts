@@ -132,7 +132,7 @@ export class PassQuizComponent implements OnInit {
         this.hoursDisplay = this.getHours(this.ticks);
         if ((this.minutesDisplay === this.res.minutes) && (this.hoursDisplay === this.res.hours)) {
           this.toastr.warning('Time is up ', 'Warning!');
-          // this.caluclScore();
+           this.caluclScore();
           this.stopTime();
           setTimeout(() => {
             this.router.navigateByUrl('/quiz');

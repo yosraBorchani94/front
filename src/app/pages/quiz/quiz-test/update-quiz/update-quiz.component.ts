@@ -17,6 +17,7 @@ export class UpdateQuizComponent implements OnInit {
   question;
   quiz: any = '';
   updatedQuiz;
+  module: any = '';
   constructor(public activatedRoute: ActivatedRoute,
               public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -24,6 +25,13 @@ export class UpdateQuizComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.moduleService.getModuleFromQuiz(this.idQuiz)
+      .subscribe(data => {
+          this.module = data;
+        },
+        err => {
+          console.log(err);
+        });
     this.moduleService.getModules()
       .subscribe(data => {
           this.modules = data;
