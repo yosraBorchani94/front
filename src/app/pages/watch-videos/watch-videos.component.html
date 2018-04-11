@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <section id="advanced">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title"> Modules </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <!--List videos start-->
+                      <div class="grid-hover">
+                        <div class="row">
+                          <div class="col-md-6 col-12"  *ngFor="let m of modules">
+                            <figure class="effect-sadie" (click)="getVideoesByModule(m.id)">
+                              <img src="../../../assets/img/gallery/1.jpg" />
+                              <figcaption>
+                                <h2>{{m.nom}}</h2>
+                                <p> Preview Subjects <span class="ft-play-circle font-medium-2"> </span></p>
+                              </figcaption>
+                            </figure>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <!-- List videos Ends-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

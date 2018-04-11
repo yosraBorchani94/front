@@ -21,6 +21,10 @@
 
                         <div class="modal-body">
                           <form #f="ngForm" (ngSubmit)="onRegister(f.value)">
+                            <select  class="form-control" [(ngModel)]="ModuleName" name="module">
+                              <option *ngFor="let m of modules" [ngValue]="m">{{m.nom}}</option>
+                            </select>
+                            <br>
                             <div class="form-group">
                               <label class="control-label">Video Name: </label>
                               <input class="form-control" ngModel="" type="text" name="name" required/>

@@ -17,7 +17,8 @@ export class QuizTestComponent implements OnInit {
   questionModal;
   answersModal: any = '';
   quiz;
-
+  modules;
+  QuestionsByModule;
   constructor(private modalService: NgbModal, public toastr: ToastsManager,
               vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -28,6 +29,14 @@ export class QuizTestComponent implements OnInit {
     this.moduleService.getQuestions()
       .subscribe(data => {
           this.questions = data;
+        },
+        err => {
+          console.log(err);
+        });
+
+    this.moduleService.getModules()
+      .subscribe(data => {
+          this.modules = data;
         },
         err => {
           console.log(err);
@@ -78,5 +87,14 @@ export class QuizTestComponent implements OnInit {
         console.log(err);
         this.toastr.warning('Question not deleted', 'Warning!');
       });
+  }
+  sendIdModule(id) {
+    this.moduleService.getAllQuestionFromModule(id)
+      .subscribe(data => {
+          this.QuestionsByModule = data;
+        },
+        err => {
+          console.log(err);
+        });
   }
 }

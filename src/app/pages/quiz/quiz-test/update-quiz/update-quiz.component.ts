@@ -11,13 +11,16 @@ import {FileUploadService} from '../../../../service/file-upload.service';
   styleUrls: ['./update-quiz.component.scss']
 })
 export class UpdateQuizComponent implements OnInit {
-  ModuleName;
+  ModuleNamem;
   modules;
   idQuiz;
   question;
   quiz: any = '';
   updatedQuiz;
   module: any = '';
+  moduleByName;
+  moduleName: any = '';
+
   constructor(public activatedRoute: ActivatedRoute,
               public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -28,6 +31,7 @@ export class UpdateQuizComponent implements OnInit {
     this.moduleService.getModuleFromQuiz(this.idQuiz)
       .subscribe(data => {
           this.module = data;
+          this.moduleName = this.module.nom;
         },
         err => {
           console.log(err);
@@ -48,14 +52,24 @@ export class UpdateQuizComponent implements OnInit {
       });
   }
 
+  update() {
+    this.moduleService.getModuleByName(this.moduleName)
+      .subscribe(data => {
+          this.moduleByName = data;
+          this.module = this.moduleByName
+        console.log(this.module.id);
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
   returnToQuiz() {
     this.router.navigateByUrl('/quiz');
   }
 
   onUpdateQuiz() {
-    if (this.ModuleName === undefined) {
-      this.toastr.warning('Enter module name', 'warning!');
-    } else if (this.quiz.questionName === '') {
+    if (this.quiz.questionName === '') {
       this.toastr.warning('Enter Question name ', 'warning!');
     } else if (this.quiz.choice1 === '' || this.quiz.choice2 === '' || this.quiz.choice3 === '' || this.quiz.choice4 === '') {
       this.toastr.warning('Enter Question name ', 'warning!');
@@ -63,9 +77,9 @@ export class UpdateQuizComponent implements OnInit {
       this.quiz.checkbox3 === false && this.quiz.checkbox4 === false) {
       this.toastr.warning('choose at least one correct Answer', 'warning!');
     } else {
-      this.moduleService.updateQuestion(this.ModuleName.id, this.quiz.id, this.quiz.questionName,
+      this.moduleService.updateQuestion(this.module.id, this.quiz.id, this.quiz.questionName,
         this.quiz.choice1, this.quiz.choice2, this.quiz.choice3, this.quiz.choice4,
-        this.quiz.checkbox1, this.quiz.checkbox2, this.quiz.checkbox3, this.quiz.checkbox4 , this.quiz.urlPicture)
+        this.quiz.checkbox1, this.quiz.checkbox2, this.quiz.checkbox3, this.quiz.checkbox4, this.quiz.urlPicture)
         .subscribe(data => {
           this.updatedQuiz = data;
           if (this.updatedQuiz.urlPicture === null) {

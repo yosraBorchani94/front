@@ -38,6 +38,10 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/watchVideos', title: 'Watch Videos', icon: 'ft-video', class: '', badge: '', badgeClass: '', isExternalLink: false,
+    submenu: []
+  },
+  {
     path: '', title: 'ISTQB', icon: 'ft-file-text', class: 'has-sub', badge: '',
     badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
     submenu: [
@@ -45,6 +49,8 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: '', isExternalLink: false, submenu: []},
       { path: '/quiz', title: 'Quiz', icon: 'ft-edit', class: '', badge: '',
         badgeClass: '', isExternalLink: false, submenu: []},
+      { path: '/actifModule', title: 'Actif module', icon: 'ft-check-circle', class: '', badge: '',
+        badgeClass: '', isExternalLink: false, submenu: []}
     ]
   },
   {

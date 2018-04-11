@@ -1,0 +1,51 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+      <div class="main-content">
+        <div class="content-wrapper">
+          <div class="container-fluid">
+            <div class="row">
+              <!--List Events Start-->
+              <div class="col-md-4 col-12">
+                <h4 class="ml-2 mt-2 text-bold-500"><i class="ft-thumbs-up mr-1"></i>Completed</h4>
+                  <div *ngFor='let m of actifModule'>
+                    <div class="card">
+                      <div class="card-block pt-3">
+                        <div class="clearfix">
+                          <h5 class="text-bold-500 success float-left">{{m.nom}}</h5>
+                        </div>
+                        <p> This Module is ready to use </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-4 col-12">
+                <h4 class="ml-2 mt-2 text-bold-500"><i class="ft-trending-up mr-1"></i> In Progress</h4>
+                <div *ngFor='let p of inProgressModule'>
+                  <div class="card">
+                    <div class="card-block pt-3">
+                      <div class="clearfix">
+                        <h5 class="text-bold-500 success float-left">{{p.module.nom}}</h5>
+                      </div>
+                      <p>You have
+                        <span class="badge badge-danger badge-pill">{{p.questionsLeft}}</span>
+                        more questions to write so you can active this module
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--List Events Ends-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <app-footer></app-footer>
+  </div>
+</div>
+

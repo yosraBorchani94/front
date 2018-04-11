@@ -18,37 +18,49 @@
                   <div class="card-body">
                     <div class="card-block">
                       <!--List videos start-->
-                      <!--<div [innerHtml]="iframe_html"></div>-->
                       <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
                       <hr>
                       <button class="btn btn-primary" (click)="newVideo()">New video</button>
-                      <table show-filter="true" class="table">
-                        <thead>
-                        <tr>
-                          <th>name</th>
-                          <th >URL</th>
-                          <th >Operation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr  *ngFor="let v of videos |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
-                          <td>{{v.name}}</td>
-                          <td>{{v.url}}</td>
-                          <td>
-                            <a class="success p-0" data-original-title="" title="" (click)="onUpdateVideo(v.id)">
-                              <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                            </a>
-                            <a class="primary" data-original-title="" title="" (click)="viewVideo(v.id)">
-                              <i class="ft-eye font-medium-3 mr-2"></i>
-                            </a>
-                            <a class="danger" data-original-title="" title="" (click)="onDeleteVideo(v)">
-                              <i class="ft-trash font-medium-3"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                        </tbody>
-                      </table>
+
+                      <ngb-accordion [closeOthers]="true"  #acc="ngbAccordion">
+                        <ngb-panel *ngFor="let m of modules">
+                          <ng-template ngbPanelTitle>
+                            <span class="ft-align-justify" (click)="sendIdModule(m.id)" ><b>  {{m.nom}}</b></span>
+                          </ng-template>
+                          <ng-template ngbPanelContent>
+                            <table show-filter="true" class="table">
+                              <thead>
+                              <tr>
+                                <th>name</th>
+                                <th >URL</th>
+                                <th width="12%">Operation</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr  *ngFor="let v of videosByModule |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
+                                <td>{{v.name}}</td>
+                                <td>{{v.url}}</td>
+                                <td>
+                                  <a class="success p-0" data-original-title="" title="" (click)="onUpdateVideo(v.id)">
+                                    <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                                  </a>
+                                  <a class="primary" data-original-title="" title="" (click)="viewVideo(v.id)">
+                                    <i class="ft-eye font-medium-3 mr-2"></i>
+                                  </a>
+                                  <a class="danger" data-original-title="" title="" (click)="onDeleteVideo(v)">
+                                    <i class="ft-trash font-medium-3"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                              </tbody>
+                            </table>
+                          </ng-template>
+                        </ngb-panel>
+                      </ngb-accordion>
+
+
+
                       <hr>
                       <!-- List videos Ends-->
                     </div>

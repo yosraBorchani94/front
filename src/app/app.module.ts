@@ -51,6 +51,9 @@ import { AddPictureComponent } from './pages/quiz/quiz-test/add-picture/add-pict
 import { PassQuizComponent } from './pages/pass-quiz/pass-quiz.component'
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { ListQuizComponent } from './pages/pass-quiz/list-quiz/list-quiz.component';
+import { ActifModuleComponent } from './pages/quiz/module/actif-module/actif-module.component';
+import { WatchVideosComponent } from './pages/watch-videos/watch-videos.component';
+import { VideoesByModuleComponent } from './pages/watch-videos/videos-by-module/videoes-by-module.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +82,10 @@ import { ListQuizComponent } from './pages/pass-quiz/list-quiz/list-quiz.compone
     UpdateQuizComponent,
     AddPictureComponent,
     PassQuizComponent,
-    ListQuizComponent
+    ListQuizComponent,
+    ActifModuleComponent,
+    WatchVideosComponent,
+    VideoesByModuleComponent
 
 
   ],

@@ -84,6 +84,27 @@ export class ModuleService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  actifModule() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/actifModule',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  inProgressModule() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/inProgressModule',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  getModuleByName(moduleName) {
+    return this.http.get(this.host + '/getModuleByName/' + moduleName,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
 // ******************** Question section ************************ //
 
   addQuestion(value) {

@@ -3,6 +3,7 @@ import {EmbedVideoService} from 'ngx-embed-video';
 import {Router} from '@angular/router';
 import {VideoService} from '../../../service/video.service';
 import {ToastsManager} from 'ng2-toastr';
+import {ModuleService} from '../../../service/module.service';
 
 @Component({
   selector: 'app-videos',
@@ -10,14 +11,13 @@ import {ToastsManager} from 'ng2-toastr';
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
-  iframe_html: any;
-  youtubeUrl = 'https://www.youtube.com/watch?v=8FNwzhfPCGw';
+
   videos;
   searchText;
-
+  modules;
+  videosByModule;
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private embedService: EmbedVideoService,
-              public videoService: VideoService, private router: Router) {
-    this.iframe_html = this.embedService.embed(this.youtubeUrl);
+              public videoService: VideoService, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -29,6 +29,13 @@ export class VideosComponent implements OnInit {
     this.videoService.getVideos()
       .subscribe(data => {
           this.videos = data;
+        },
+        err => {
+          console.log(err);
+        });
+    this.moduleService.getModules()
+      .subscribe(data => {
+          this.modules = data;
         },
         err => {
           console.log(err);
@@ -52,5 +59,15 @@ export class VideosComponent implements OnInit {
   onUpdateVideo(id) {
     this.router.navigate(['/updateVideo', id]);
 
+  }
+
+  sendIdModule(id) {
+    this.videoService.getVideosByModule(id)
+      .subscribe(data => {
+          this.videosByModule = data;
+        },
+        err => {
+          console.log(err);
+        });
   }
 }

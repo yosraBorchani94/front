@@ -51,5 +51,10 @@ export class VideoService {
     }
     return this.http.put(this.host + '/video/' + video.id, video, {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
-
+  getVideosByModule (idModule) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getVideosByModule/' + idModule,{headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 }

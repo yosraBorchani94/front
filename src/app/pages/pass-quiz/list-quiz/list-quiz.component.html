@@ -25,12 +25,14 @@
                       <thead>
                       <tr>
                         <th>Title</th>
+                        <th>Level</th>
                         <th>Operations</th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr *ngFor="let m of modules |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
-                        <td>{{m.nom}}</td>
+                        <td>{{m.nom}} </td>
+                        <td>{{m.level}}</td>
                         <td>
                           <div *ngIf="!m.totalQuestions">
                           <span class="d-inline-block" tabindex="0" placement="top" ngbTooltip="Admin Still working on it">
