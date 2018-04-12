@@ -1,58 +1,176 @@
 <div class="wrapper">
-  <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black"
+       data-image="assets/img/sidebar-bg/01.jpg">
     <app-sidebar></app-sidebar>
     <div class="sidebar-background"></div>
   </div>
   <div class="main-panel">
     <app-navbar></app-navbar>
-
     <div class="main-content">
       <div class="content-wrapper">
         <div class="container-fluid">
 
-          <!--Advanced filter Starts-->
-          <section id="advanced">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4 class="card-title">Download File </h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="card-block">
-                      <!--downloading Starts-->
-                        <input type="text" [(ngModel)]="search" name="searchText" placeholder="Search...">
-                        <table  show-filter="true"  class="table">
-                          <thead>
-                          <tr>
-                            <th>File name</th>
-                            <th>Operations</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr  *ngFor="let f of list |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
-                            <td>{{f}}</td>
-                            <td>
-                              <button type="button" (click)="saveFile(f)" class="btn ft-download"></button>
-                            </td>
-                          </tr>
-                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                          </tbody>
-                        </table>
-                        <button type="button" class="btn btn-raised btn-success"  (click)="uploadAll()">
-                        <span class="fa fa-download"></span> Download all
-                      </button>
-                      <!--downloading Ends-->
-                    </div>
-                  </div>
+          <!--Tabset Starts-->
+          <div class="col-md-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Download</h4>
+                <br>
+
+              </div>
+
+              <div class="card-body">
+                <div class="card-block">
+                  <ngb-tabset>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle><b>Your Files</b></ng-template>
+                      <ng-template ngbTabContent>
+                        <!--downloading Starts-->
+                        <section>
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <div class="card-block">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                      <ngb-panel *ngFor="let m of modules">
+                                        <ng-template ngbPanelTitle>
+                                          <span class="ft-align-justify" (click)="sendIdModule(m.id)"><b>  {{m.nom}}</b></span>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                          <input type="text" [(ngModel)]="search" name="searchText"
+                                                 placeholder="Search...">
+                                          <br>
+                                          <table show-filter="true" class="table">
+                                            <thead>
+                                            <tr>
+                                              <th>File name</th>
+                                              <th>Operations</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr
+                                              *ngFor="let f of documentsByModuleByUser |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
+                                              <td>{{f}}</td>
+                                              <td>
+                                                <a class="success" data-original-title="" title="download"
+                                                   (click)="downloadUserFile(f)">
+                                                  <i class="ft-download font-medium-3 mr-2"></i>
+                                                </a>
+                                                <a class="danger" data-original-title="" title="delete"
+                                                   (click)="deleteUserFile(f)">
+                                                  <i class="ft-trash font-medium-3 mr-2"></i>
+                                                </a>
+                                              </td>
+                                            </tr>
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                            </tbody>
+                                          </table>
+                                        </ng-template>
+                                      </ngb-panel>
+                                    </ngb-accordion>
+                                    <br>
+                                    <br>
+                                    <div *ngIf="documentsListByUser.length >0 ">
+                                      <button type="button" class="btn btn-raised btn-success"
+                                              (click)="DownloadAllByUser()">
+                                        <span class="fa fa-download"></span> Download all your Files
+                                      </button>
+
+                                      <button type="button" class="btn btn-raised btn-danger"
+                                              (click)="DeletedAllByModule()">
+                                        <span class="fa fa-trash"></span> Deleted all User Files
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <!--downloading Ends-->
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle><b>All the Files</b></ng-template>
+                      <ng-template ngbTabContent>
+                        <!--downloading Starts-->
+                        <section id="advanced">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <div class="card-block">
+                                    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+                                      <ngb-panel *ngFor="let m of modules">
+                                        <ng-template ngbPanelTitle>
+                                          <span class="ft-align-justify"
+                                                (click)="sendIdModule2(m.id)"><b>  {{m.nom}}</b></span>
+                                        </ng-template>
+                                        <ng-template ngbPanelContent>
+                                          <input type="text" [(ngModel)]="search" name="searchText"
+                                                 placeholder="Search...">
+                                          <table show-filter="true" class="table">
+                                            <thead>
+                                            <tr>
+                                              <th>File name</th>
+                                              <th>Operations</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr
+                                              *ngFor="let f of documentsByModule |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
+                                              <td>{{f}}</td>
+                                              <td>
+                                                <a class="success" data-original-title="" title="download"
+                                                   (click)="downloadFile(f)">
+                                                  <i class="ft-download font-medium-3 mr-2"></i>
+                                                </a>
+
+                                                <a class="danger" data-original-title="" title="delete"
+                                                   (click)="deleteFile(f)">
+                                                  <i class="ft-trash font-medium-3 mr-2"></i>
+                                                </a>
+                                              </td>
+                                            </tr>
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                            </tbody>
+                                          </table>
+                                        </ng-template>
+                                      </ngb-panel>
+                                    </ngb-accordion>
+                                    <br>
+                                    <br>
+                                    <div *ngIf="documentsList.length > 0 ">
+                                      <button type="button" class="btn btn-raised btn-success"
+                                              (click)="DownloadAllByModule()">
+                                        <span class="fa fa-download"></span> Download all Files
+                                      </button>
+
+                                      <button type="button" class="btn btn-raised btn-danger"
+                                              (click)="DeletedAllByModule()">
+                                        <span class="fa fa-trash"></span> Deleted all Files
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <!--downloading Ends-->
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
                 </div>
               </div>
             </div>
-          </section>
-          <!--Advanced filter Ends-->
+          </div>
+          <!--Tabset Ends-->
+
+
         </div>
       </div>
     </div>
-    <app-footer></app-footer>
   </div>
 </div>

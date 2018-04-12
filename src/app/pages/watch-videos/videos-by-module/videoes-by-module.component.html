@@ -18,10 +18,51 @@
                   <div class="card-body">
                     <div class="card-block">
                       <!--List videos start-->
+
+                        <!-- Modal start -->
+                          <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Video : <b>{{video.name}}</b></h4>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+
+                              <section id="players">
+                                <div class="card">
+                                  <div class="card-block">
+                                    <div class="row">
+                                      <div class="col-md-12 col-lg-12">
+                                        <div [innerHtml]="iframe_html"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h4> About this video </h4>
+                                  </div>
+                                  <div class="card-block">
+                                    <div class="row">
+                                      <div class="col-md-12 col-lg-12">
+                                      {{video.description}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+                            </div>
+                          </ng-template>
+                        <!-- Modal ends -->
                       <div class="grid-hover">
                         <div class="row">
                           <div class="col-md-6 col-12"  *ngFor="let v of videosByModule">
-                            <figure class="effect-sadie" (click)="getVideo(v.id)">
+                            <figure class="effect-sadie" (click)="getVideo(content,v.id)">
                               <img src="../../../assets/img/gallery/1.jpg" />
                               <figcaption>
                                 <h2>{{v.name}}</h2>
@@ -30,6 +71,7 @@
                             </figure>
                           </div>
                         </div>
+
                       </div>
                       <!-- List videos Ends-->
                     </div>

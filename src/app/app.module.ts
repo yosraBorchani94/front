@@ -54,6 +54,10 @@ import { ListQuizComponent } from './pages/pass-quiz/list-quiz/list-quiz.compone
 import { ActifModuleComponent } from './pages/quiz/module/actif-module/actif-module.component';
 import { WatchVideosComponent } from './pages/watch-videos/watch-videos.component';
 import { VideoesByModuleComponent } from './pages/watch-videos/videos-by-module/videoes-by-module.component';
+import { VgCoreModule } from 'videogular2/core';
+import { VgControlsModule } from 'videogular2/controls';
+import { VgOverlayPlayModule } from 'videogular2/overlay-play';
+import { VgBufferingModule } from 'videogular2/buffering';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,8 +114,11 @@ import { VideoesByModuleComponent } from './pages/watch-videos/videos-by-module/
     ToastModule.forRoot(),
     EmbedVideo.forRoot(),
     CustomFormsModule,
-    CountdownTimerModule.forRoot()
-
+    CountdownTimerModule.forRoot(),
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService],
   bootstrap: [AppComponent]

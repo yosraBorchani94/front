@@ -1,13 +1,9 @@
-import {
-  AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild,
-  ViewContainerRef
-} from '@angular/core';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import {RequestOptions, Headers, Http, ResponseContentType} from '@angular/http';
+import {ChangeDetectionStrategy, Component, OnInit, ViewContainerRef} from '@angular/core';
+import {FileUploader} from 'ng2-file-upload/ng2-file-upload';
 import {FileUploadService} from '../../../service/file-upload.service';
-import { saveAs } from 'file-saver/FileSaver';
-import {LoginPageComponent} from '../../login/login-page.component';
+import {saveAs} from 'file-saver/FileSaver';
 import {ToastsManager} from 'ng2-toastr';
+import {ModuleService} from '../../../service/module.service';
 
 @Component({
   selector: 'app-documentation',
@@ -17,18 +13,27 @@ import {ToastsManager} from 'ng2-toastr';
 })
 export class DocumentationComponent implements OnInit {
   username;
+  ModuleName;
+  module;
+  modules;
   fileToUpload: File = null;
-  uploader: FileUploader = new FileUploader({
-  });
+  uploader: FileUploader = new FileUploader({});
   hasBaseDropZoneOver = false;
-  private options = new RequestOptions(
-    { headers: new Headers({ 'Content-Type': 'application/json' }) });
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private http: Http, public fileUploadService: FileUploadService) {
+
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public fileUploadService: FileUploadService, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
+
   ngOnInit() {
     this.username = sessionStorage.getItem('username');
+    this.moduleService.getModules()
+      .subscribe(data => {
+          this.modules = data;
+        },
+        err => {
+          console.log(err);
+        });
   }
 
   handleFileInput(files: FileList) {
@@ -40,16 +45,36 @@ export class DocumentationComponent implements OnInit {
   }
 
   upload(file) {
-    this.fileUploadService.postFile(file, this.username).subscribe(data => {
-      this.toastr.success('File ' + file.name + 'uploaded', 'Success!');
-    }, error => {
-      console.log(error);
-      this.toastr.warning('File ' + file.name + ' failed uploaded', 'Warning!');
-    });
+    if (this.ModuleName === undefined) {
+      this.toastr.warning('Choose a Model ', 'Warning!');
+    } else {
+      this.moduleService.getModuleByName(this.ModuleName.nom)
+        .subscribe(data => {
+            this.module = data;
+            this.fileUploadService.postFile(file, this.username, this.module.id)
+              .subscribe(data1 => {
+                this.toastr.success('File ' + file.name + '  uploaded', 'Success!');
+              }, error => {
+                console.log(error);
+                if (error.status === 200) {
+                  this.toastr.success('File ' + file.name + 'uploaded', 'Success!');
+                } else {
+                  this.toastr.warning('File ' + file.name + ' uploaded before or the file\'s size > 500KB', 'Warning!');
+                }
+
+              });
+          },
+          err => {
+            console.log(err);
+          });
+    }
+
+
   }
-  uploadAll () {
-     for (const file of this.uploader.queue) {
-       this.upload(file._file);
+
+  uploadAll() {
+    for (const file of this.uploader.queue) {
+      this.upload(file._file);
     }
   }
 }
