@@ -38,50 +38,53 @@
                                           <span class="ft-align-justify" (click)="sendIdModule(m.id)"><b>  {{m.nom}}</b></span>
                                         </ng-template>
                                         <ng-template ngbPanelContent>
-                                          <input type="text" [(ngModel)]="search" name="searchText"
-                                                 placeholder="Search...">
+
                                           <br>
-                                          <table show-filter="true" class="table">
-                                            <thead>
-                                            <tr>
-                                              <th>File name</th>
-                                              <th>Operations</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr
-                                              *ngFor="let f of documentsByModuleByUser |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
-                                              <td>{{f}}</td>
-                                              <td>
-                                                <a class="success" data-original-title="" title="download"
-                                                   (click)="downloadUserFile(f)">
-                                                  <i class="ft-download font-medium-3 mr-2"></i>
-                                                </a>
-                                                <a class="danger" data-original-title="" title="delete"
-                                                   (click)="deleteUserFile(f)">
-                                                  <i class="ft-trash font-medium-3 mr-2"></i>
-                                                </a>
-                                              </td>
-                                            </tr>
-                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                                            </tbody>
-                                          </table>
+                                          <div *ngIf="documentsByModuleByUser.length === 0">
+                                            <a class="warning">
+                                              <i class="ft-info font-medium-3 mr-2"> </i>
+                                              You haven't uploaded Files into this module yet
+                                            </a>
+                                          </div>
+                                          <div *ngIf="documentsByModuleByUser.length > 0">
+                                            <input type="text" [(ngModel)]="search" name="searchText"
+                                                   placeholder="Search...">
+                                            <br>
+                                            <table show-filter="true" class="table">
+                                              <thead>
+                                              <tr>
+                                                <th>File name</th>
+                                                <th>Module</th>
+                                                <th>Operations</th>
+                                              </tr>
+                                              </thead>
+
+                                              <tbody>
+                                              <tr
+                                                *ngFor="let f of documentsByModuleByUser |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
+                                                <td>{{f}}</td>
+                                                <td>{{f}}</td>
+                                                <td>
+                                                  <a class="success" data-original-title="" title="download"
+                                                     (click)="downloadUserFile(f)">
+                                                    <i class="ft-download font-medium-3 mr-2"></i>
+                                                  </a>
+                                                  <a class="danger" data-original-title="" title="delete"
+                                                     (click)="deleteUserFile(f)">
+                                                    <i class="ft-trash font-medium-3 mr-2"></i>
+                                                  </a>
+                                                </td>
+                                              </tr>
+
+                                              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                              </tbody>
+                                            </table>
+                                          </div>
                                         </ng-template>
                                       </ngb-panel>
                                     </ngb-accordion>
                                     <br>
                                     <br>
-                                    <div *ngIf="documentsListByUser.length >0 ">
-                                      <button type="button" class="btn btn-raised btn-success"
-                                              (click)="DownloadAllByUser()">
-                                        <span class="fa fa-download"></span> Download all your Files
-                                      </button>
-
-                                      <button type="button" class="btn btn-raised btn-danger"
-                                              (click)="DeletedAllByModule()">
-                                        <span class="fa fa-trash"></span> Deleted all User Files
-                                      </button>
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -108,50 +111,50 @@
                                                 (click)="sendIdModule2(m.id)"><b>  {{m.nom}}</b></span>
                                         </ng-template>
                                         <ng-template ngbPanelContent>
-                                          <input type="text" [(ngModel)]="search" name="searchText"
-                                                 placeholder="Search...">
-                                          <table show-filter="true" class="table">
-                                            <thead>
-                                            <tr>
-                                              <th>File name</th>
-                                              <th>Operations</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr
-                                              *ngFor="let f of documentsByModule |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
-                                              <td>{{f}}</td>
-                                              <td>
-                                                <a class="success" data-original-title="" title="download"
-                                                   (click)="downloadFile(f)">
-                                                  <i class="ft-download font-medium-3 mr-2"></i>
-                                                </a>
 
-                                                <a class="danger" data-original-title="" title="delete"
-                                                   (click)="deleteFile(f)">
-                                                  <i class="ft-trash font-medium-3 mr-2"></i>
-                                                </a>
-                                              </td>
-                                            </tr>
-                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                                            </tbody>
-                                          </table>
+                                          <div *ngIf="documentsByModule.length === 0">
+                                            <a class="warning">
+                                              <i class="ft-info font-medium-3 mr-2"> </i>
+                                              You haven't uploaded Files into this module yet
+                                            </a>
+                                          </div>
+                                          <div *ngIf="documentsByModule.length > 0">
+
+                                            <input type="text" [(ngModel)]="search" name="searchText"
+                                                   placeholder="Search...">
+                                            <br>
+                                            <table show-filter="true" class="table">
+                                              <thead>
+                                              <tr>
+                                                <th>File name</th>
+                                                <th>Operations</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                              <tr
+                                                *ngFor="let f of documentsByModule |filter: search | paginate: { itemsPerPage: 6, currentPage: p}">
+                                                <td>{{f}}</td>
+                                                <td>
+                                                  <a class="success" data-original-title="" title="download"
+                                                     (click)="downloadFile(f)">
+                                                    <i class="ft-download font-medium-3 mr-2"></i>
+                                                  </a>
+
+                                                  <a class="danger" data-original-title="" title="delete"
+                                                     (click)="deleteFile(f)">
+                                                    <i class="ft-trash font-medium-3 mr-2"></i>
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                              </tbody>
+                                            </table>
+                                          </div>
                                         </ng-template>
                                       </ngb-panel>
                                     </ngb-accordion>
                                     <br>
                                     <br>
-                                    <div *ngIf="documentsList.length > 0 ">
-                                      <button type="button" class="btn btn-raised btn-success"
-                                              (click)="DownloadAllByModule()">
-                                        <span class="fa fa-download"></span> Download all Files
-                                      </button>
-
-                                      <button type="button" class="btn btn-raised btn-danger"
-                                              (click)="DeletedAllByModule()">
-                                        <span class="fa fa-trash"></span> Deleted all Files
-                                      </button>
-                                    </div>
                                   </div>
                                 </div>
                               </div>

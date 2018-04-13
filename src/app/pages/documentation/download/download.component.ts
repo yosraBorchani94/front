@@ -5,6 +5,7 @@ import {saveAs} from 'file-saver/FileSaver';
 import {ToastsManager} from 'ng2-toastr';
 import {ModuleService} from '../../../service/module.service';
 import {CONFIG_FILENAME} from 'tslint/lib/configuration';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-download',
@@ -23,7 +24,7 @@ export class DownloadComponent implements OnInit {
   documentsList: any = '';
   documentsListByUser: any = '';
 
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public fileUploadService: FileUploadService, public moduleService: ModuleService) {
+  constructor(private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef, public fileUploadService: FileUploadService, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -75,9 +76,15 @@ export class DownloadComponent implements OnInit {
   }
 
   DownloadAllByUser() {
-    for (const file of this.list) {
-      this.downloadUserFile(file);
-    }
+    this.documentsByModuleByUser.forEach(e => {
+      this.downloadUserFile(e);
+    })
+  }
+
+  DeletedAllByUser() {
+    this.documentsByModuleByUser.forEach(e => {
+      this.deleteUserFile(e);
+    })
   }
 
   downloadFile(fileName) {
@@ -133,7 +140,7 @@ export class DownloadComponent implements OnInit {
           this.document = data;
           this.fileUploadService.deleteUserFile(this.document.id)
             .subscribe(data1 => {
-                this.documentsByModule.splice(this.documentsByModule.indexOf(this.document), 1);
+                this.documentsByModule.splice(this.documentsByModule.indexOf(fileName), 1);
                 this.toastr.success('Document  ' + fileName + '  deleted', 'Success!');
               },
               err => {
@@ -164,9 +171,10 @@ export class DownloadComponent implements OnInit {
     this.fileUploadService.findDocumentByName(fileName)
       .subscribe(data => {
           this.document = data;
+          // console.log(this.document.id)
           this.fileUploadService.deleteUserFile(this.document.id)
             .subscribe(data1 => {
-                this.documentsByModuleByUser.splice(this.documentsByModuleByUser.indexOf(this.document), 1);
+                this.documentsByModuleByUser.splice(this.documentsByModuleByUser.indexOf(fileName), 1);
                 this.toastr.success('Document  ' + fileName + '  deleted', 'Success!');
               },
               err => {
@@ -178,16 +186,16 @@ export class DownloadComponent implements OnInit {
         });
   }
 
-  DeletedAllByUser() {
-    this.fileUploadService.getDocumentsByUser(this.username)
-      .subscribe(data => {
-          this.documents = data;
-          this.documents.forEach(e => {
-            this.deleteUserFile(e.documentName);
-          })
-        },
-        err => {
-          console.log(err);
-        });
-  }
+  // DeletedAllByUser() {
+  //   this.fileUploadService.getDocumentsByUser(this.username)
+  //     .subscribe(data => {
+  //         this.documents = data;
+  //         this.documents.forEach(e => {
+  //           this.deleteUserFile(e.documentName);
+  //         })
+  //       },
+  //       err => {
+  //         console.log(err);
+  //       });
+  // }
 }

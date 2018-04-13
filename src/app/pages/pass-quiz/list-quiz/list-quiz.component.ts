@@ -22,6 +22,7 @@ export class ListQuizComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.moduleService.getModulesSorted()
       .subscribe(data => {
           this.modules = data;

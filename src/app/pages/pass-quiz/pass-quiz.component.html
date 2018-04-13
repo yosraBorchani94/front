@@ -18,7 +18,12 @@
                       <tr *ngFor="let q of questionList;let i= index">
                         <td>{{q.questionName}}
                           <div *ngIf="q.urlPicture !== null">
-                          </div>
+                            <div id="invoice-company-details" class="row">
+                              <div class="col-6 text-left">
+                                <img [src]="q.urlPicture.split('src/')[1]">
+                              </div>
+                            </div>
+                           </div>
                           <br>
                           <label class="container">
                             <input type="checkbox" name="checkbox1" value="true" (change)="test(q.choice1,$event,q.id)">
