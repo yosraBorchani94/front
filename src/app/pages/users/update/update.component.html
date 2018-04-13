@@ -25,10 +25,8 @@
                     <br>
                     <div class="form-group">
                       <label class="control-label">Role:</label>
-                      {{roleName}}
-                      <select class="form-control" [(ngModel)]="roleValue" name="role" (change)="changeRole()">
-                        <option *ngFor="let r of roles" [ngValue]="r">
-                          {{r.roleName}}
+                      <select class="form-control" [(ngModel)]="roleName" name="role" (change)="changeRole()">
+                        <option *ngFor="let r of roles" [ngValue]="r.roleName">{{r.roleName}}
                         </option>
                       </select>
                     </div>

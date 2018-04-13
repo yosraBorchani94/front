@@ -33,7 +33,6 @@ export class UpdateComponent implements OnInit {
     this.usersService.getUser(this.idUser)
       .subscribe(data => {
         this.user = data;
-        this.roleValue = this.user.roles[0];
         this.roleName = this.user.roles[0].roleName;
       }, err => {
         console.log(err);
@@ -41,23 +40,22 @@ export class UpdateComponent implements OnInit {
   }
 
   updateUser() {
-    // console.log(this.user)
     if (this.user.password === this.user.repassword) {
-      this.usersService.updateUser(this.user)
-        .subscribe(resp => {
-            this.user = resp;
-            this.toastr.success('User updated', 'Success!');
-            setTimeout(() => {
-              this.router.navigate(['/users']);
-            }, 2000);
-          },
-          err => {
-            console.log('err' + err);
-            this.toastr.error('Updated Fail', 'Error');
-          });
-    } else {
-      this.toastr.error('Not matching password/repassword', 'Error');
-    }
+       this.usersService.updateUser(this.user)
+         .subscribe(resp => {
+             this.user = resp;
+             this.toastr.success('User updated', 'Success!');
+             setTimeout(() => {
+               this.router.navigate(['/users']);
+             }, 2000);
+           },
+           err => {
+             console.log('err' + err);
+             this.toastr.error('Updated Fail', 'Error');
+           });
+     } else {
+       this.toastr.error('Not matching password/repassword', 'Error');
+     }
   }
 
   OnCancel() {
@@ -66,6 +64,16 @@ export class UpdateComponent implements OnInit {
 
 
   changeRole() {
-    this.user.roles[0] = this.roleValue;
+    this.usersService.findByRoleName(this.roleName)
+      .subscribe(resp => {
+          this.roleValue = resp;
+          this.user.roles[0] = this.roleValue;
+          // console.log('role : ' , this.user.roles);
+        },
+        err => {
+          console.log('err' + err);
+        });
+
+
   }
 }

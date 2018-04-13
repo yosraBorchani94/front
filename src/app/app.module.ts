@@ -58,6 +58,7 @@ import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
+import { EventsPlanningComponent } from './pages/events-planning/events-planning.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +90,8 @@ import { VgBufferingModule } from 'videogular2/buffering';
     ListQuizComponent,
     ActifModuleComponent,
     WatchVideosComponent,
-    VideoesByModuleComponent
+    VideoesByModuleComponent,
+    EventsPlanningComponent
 
 
   ],

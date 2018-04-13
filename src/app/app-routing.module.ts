@@ -30,6 +30,7 @@ import {ListQuizComponent} from './pages/pass-quiz/list-quiz/list-quiz.component
 import {ActifModuleComponent} from './pages/quiz/module/actif-module/actif-module.component';
 import {WatchVideosComponent} from './pages/watch-videos/watch-videos.component';
 import {VideoesByModuleComponent} from './pages/watch-videos/videos-by-module/videoes-by-module.component';
+import {EventsPlanningComponent} from './pages/events-planning/events-planning.component';
 
 
 
@@ -125,6 +126,9 @@ const appRoutes: Routes = [
   },
   { path: 'videosByModule/:id',
     component: VideoesByModuleComponent,
+  },
+  { path: 'enventsPlanning',
+    component: EventsPlanningComponent,
   }
 
 ];

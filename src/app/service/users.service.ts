@@ -79,4 +79,12 @@ export class UsersService {
     return this.http.get(this.host + '/userByUsername/' + username,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
+
+  findByRoleName (username) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/findByRoleName/' + username,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 }

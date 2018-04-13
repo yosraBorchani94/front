@@ -25,11 +25,11 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: '/events', title: 'Planning', icon: 'ft-calendar', class: '', badge: '',
-        badgeClass: '', isExternalLink: true, submenu: []
+        badgeClass: '', isExternalLink: false, submenu: []
       },
       {
         path: '/participate', title: 'Participate', icon: 'ft-check', class: '',
-        badge: '', badgeClass: '', isExternalLink: true, submenu: []
+        badge: '', badgeClass: '', isExternalLink: false, submenu: []
       }
     ]
   },
