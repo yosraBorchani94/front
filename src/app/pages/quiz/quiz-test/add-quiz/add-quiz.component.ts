@@ -15,7 +15,7 @@ import {FileUploadService} from '../../../../service/file-upload.service';
   styleUrls: ['./add-quiz.component.scss']
 })
 export class AddQuizComponent implements OnInit {
-
+  module;
   modules;
   ModuleName;
   question;
@@ -24,6 +24,8 @@ export class AddQuizComponent implements OnInit {
   isChecked2 = false;
   isChecked3 = false;
   isChecked4 = false;
+  showNotifSuccess = false;
+  showNotifWarning = false;
 
   constructor(private http: HttpClient, public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -38,8 +40,9 @@ export class AddQuizComponent implements OnInit {
           console.log(err);
         });
   }
+
   onSaveQuestion(value) {
-   if (value.checkbox1 === false && value.checkbox2 === false &&
+    if (value.checkbox1 === false && value.checkbox2 === false &&
       value.checkbox3 === false && value.checkbox4 === false) {
       this.toastr.warning('choose at least one correct Answer', 'warning!');
     } else if ((value.choice1 === value.choice2) || (value.choice1 === value.choice3) || (value.choice1 === value.choice4) ||
@@ -49,20 +52,42 @@ export class AddQuizComponent implements OnInit {
       this.toastr.warning('choose a module ', 'Warning !');
     } else {
       this.moduleService.addQuestion(value)
-    .subscribe((data1) => {
-      this.quiz = data1;
-      this.toastr.success('New Question created', 'Success!');
-      setTimeout(() => {
-        this.router.navigate(['/addPicture/', this.quiz.id]);
-      }, 2000);
-    }, err => {
-      console.log(err);
-      this.toastr.warning('Duplicate Question name ', 'warning!');
-    });
+        .subscribe((data1) => {
+          this.quiz = data1;
+          this.toastr.success('New Question created', 'Success!');
+          setTimeout(() => {
+            this.router.navigate(['/addPicture/', this.quiz.id]);
+          }, 2000);
+        }, err => {
+          console.log(err);
+          this.toastr.warning('Duplicate Question name ', 'warning!');
+        });
     }
   }
+
   returnToQuiz() {
     this.router.navigateByUrl('/quiz');
+  }
+
+  update() {
+    this.moduleService.getModuleByName(this.ModuleName.nom)
+      .subscribe((data) => {
+        this.module = data;
+        if (this.module.quiz.length > this.module.nbr_questions) {
+          this.showNotifSuccess = true;
+          this.showNotifWarning = false;
+        } else {
+          this.showNotifSuccess = false;
+          this.showNotifWarning = true;
+        }
+      }, err => {
+        console.log(err);
+        this.toastr.warning('Duplicate Question name ', 'warning!');
+      });
+  }
+  leaveSelect() {
+    this.showNotifSuccess = false;
+    this.showNotifWarning = false;
   }
 
 
