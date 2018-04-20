@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <div class="app-sidebar" data-active-color="white" data-background-color="black"
+       data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="main-content">
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <section id="advanced">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Get Started </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <!--List videos start-->
+
+                      <!-- Modal start -->
+                      <ng-template #content let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Video : <b>{{event.title}}</b></h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+
+                          <section id="players">
+                            <div class="card">
+                              <div class="card-block">
+                                <div class="row">
+                                  <div class="col-md-12 col-lg-12">
+                                    <div [innerHtml]="iframe_html"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </section>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+                        </div>
+                      </ng-template>
+                      <!-- Modal ends -->
+                      <div class="grid-hover">
+                        <div class="row">
+                          <div *ngFor="let e of events">
+                            <div *ngIf="e.startDate >= today">
+                              <figure class="effect-sadie" (click)="getEvent(content,e.id)">
+                                <img src="../../../assets/img/gallery/1.jpg"/>
+                                <figcaption>
+                                  <h2>{{e.title}}</h2>
+                                  <p> Preview Live Course <span class="ft-play-circle font-medium-2"> </span></p>
+                                </figcaption>
+                              </figure>
+                            </div>
+                          </div>
+                          <div *ngIf="events.length === 0 ">
+                            <a class="warning">
+                              <i class="ft-info font-medium-3 mr-2"> </i>
+                              You did not accept events yet
+                            </a>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- List videos Ends-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+

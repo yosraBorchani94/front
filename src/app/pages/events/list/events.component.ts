@@ -15,7 +15,7 @@ export class EventsComponent implements OnInit {
   searchText
   events;
   event;
-
+  today = Date.now();
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public eventService: EventService) {
     this.toastr.setRootViewContainerRef(vcr);
   }

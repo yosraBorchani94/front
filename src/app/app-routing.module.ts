@@ -31,6 +31,8 @@ import {ActifModuleComponent} from './pages/quiz/module/actif-module/actif-modul
 import {WatchVideosComponent} from './pages/watch-videos/watch-videos.component';
 import {VideoesByModuleComponent} from './pages/watch-videos/videos-by-module/videoes-by-module.component';
 import {EventsPlanningComponent} from './pages/events-planning/events-planning.component';
+import {BroadcastComponent} from './pages/events/broadcast/broadcast.component';
+import {BroadcastByUserComponent} from './pages/broadcast-by-user/broadcast-by-user.component';
 
 
 
@@ -129,7 +131,14 @@ const appRoutes: Routes = [
   },
   { path: 'enventsPlanning',
     component: EventsPlanningComponent,
+  },
+  { path: 'broadcastList',
+    component: BroadcastComponent,
+  },
+  { path: 'liveByUser',
+    component: BroadcastByUserComponent,
   }
+
 
 ];
 

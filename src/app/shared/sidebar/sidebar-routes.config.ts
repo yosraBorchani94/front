@@ -28,10 +28,18 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: '', isExternalLink: false, submenu: []
       },
       {
-        path: '/participate', title: 'Participate', icon: 'ft-check', class: '',
+        path: '/broadcastList', title: 'Brodcast videos', icon: 'ft-airplay', class: '',
         badge: '', badgeClass: '', isExternalLink: false, submenu: []
       }
     ]
+  },
+  {
+    path: '/participate', title: 'Participate To Event', icon: 'ft-check', class: '',
+    badge: '', badgeClass: '', isExternalLink: false, submenu: []
+  },
+  {
+    path: '/liveByUser', title: 'Watch Live', icon: 'ft-airplay', class: '',
+    badge: '', badgeClass: '', isExternalLink: false, submenu: []
   },
   {
     path: '/videos', title: 'Videos', icon: 'ft-video', class: '', badge: '', badgeClass: '', isExternalLink: false,

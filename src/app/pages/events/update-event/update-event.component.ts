@@ -12,7 +12,7 @@ import {ToastsManager} from 'ng2-toastr';
 })
 export class UpdateEventComponent implements OnInit {
   idEvent;
-  event: any;
+  event: any = '';
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public activatedRoute: ActivatedRoute,
               public eventService: EventService, private router: Router) {
@@ -40,14 +40,14 @@ export class UpdateEventComponent implements OnInit {
       this.eventService.updateEvent(this.event)
         .subscribe(resp => {
             this.event = resp;
-            this.toastr.success('event: ' + this.event.title + ' updated', 'Success!');
+            this.toastr.success('event ' + this.event.title + ' updated', 'Success!');
             setTimeout(() => {
               this.router.navigateByUrl('/events');
             }, 2000);
           },
           err => {
             console.log('err' + err);
-            console.log(this.event);
+            this.toastr.warning('event ' + this.event.title + ' not created', 'Warning!');
           });
     }
   }

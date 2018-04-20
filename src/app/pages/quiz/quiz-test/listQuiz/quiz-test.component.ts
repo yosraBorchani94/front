@@ -82,6 +82,9 @@ export class QuizTestComponent implements OnInit {
       .subscribe(data => {
         this.questions.splice(this.questions.indexOf(question), 1);
         this.toastr.success('Question:  ' + question.questionName + ' deleted', 'Success!');
+        setTimeout(() => {
+          this.ngOnInit();
+        }, 1000);
       }, err => {
 
         console.log(err);

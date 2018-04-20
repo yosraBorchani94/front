@@ -19,14 +19,14 @@ export class EventService {
       this.loadToken();
     }
     return this.http.get(this.host + '/event',
-      {headers: new HttpHeaders({'Authorization':  this.jwtToken})});
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
-  getEventFromAcceptedEvent(id) {
+  getEventFromAcceptedEvent(id, username) {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.get(this.host + '/accpetedEvent/' + id,
+    return this.http.post(this.host + '/accpetedEvent/' + id, username,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
@@ -53,11 +53,17 @@ export class EventService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  unparticipate(value) {
+    return this.http.post(this.host + '/unparticipate/', value,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
   accpetedEvent(value) {
     return this.http.post(this.host + '/accpetedEvent', value,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
-  sendSecondNotification () {
+
+  sendSecondNotification() {
     if (this.jwtToken == null) {
       this.loadToken();
     }
@@ -65,5 +71,19 @@ export class EventService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  getEventsByUser(username) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.post(this.host + '/getEventsByUser', username,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 
+  getActualEvents() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getActualEvents/',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 }

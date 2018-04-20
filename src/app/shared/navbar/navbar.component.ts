@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {UsersService} from '../../service/users.service';
+import {UserService} from '../../service/UserService';
 
 @Component({
     selector: 'app-navbar',
@@ -10,7 +12,7 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit {
 username;
 role
-  constructor(public router: Router) { }
+  constructor(public router: Router ,  private userService: UserService) { }
 
   ngOnInit() {
     this.username = sessionStorage.getItem('username');
@@ -18,6 +20,7 @@ role
   }
   onLogOut () {
     this.router.navigateByUrl('/login');
+    this.userService.signOut();
   }
 }
 

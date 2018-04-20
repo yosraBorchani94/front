@@ -19,20 +19,25 @@
                   </div>
                   <div class="card-body">
                     <div class="card-block">
-                      <form #f="ngForm" (ngSubmit)="onSaveEvent(f.value)" novalidate>
-                        <input class="form-control" ngModel="" type="text" name="title"  placeholder="Event Name" required/>
-                        <br>
-                        <input  class="form-control" [owlDateTimeTrigger]="dt1"  ngModel="" [owlDateTime]="dt1" placeholder="Start Date" name="startDate" required>
-                        <owl-date-time #dt1></owl-date-time>
-                        <br>
-                        <input  class="form-control" [owlDateTimeTrigger]="dt2"  ngModel="" [owlDateTime]="dt2" placeholder="End Date" name="endDate" required >
-                        <owl-date-time #dt2></owl-date-time>
-                        <br>
-                        <button [disabled]="!f.valid"  type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" (click)="returnToCalendar()" class="btn btn-danger">Cancel</button>
-                      </form>
+
+                      <button *ngIf='!isLoggedIn()' (click)="signIn()">sign in</button>
+                      <div *ngIf='isLoggedIn()'>
+                        <form #f="ngForm" (ngSubmit)="onSaveEvent(f.value)" novalidate>
+                          <input class="form-control" ngModel="" type="text" name="title"  placeholder="Event Name" required/>
+                          <br>
+                          <input  class="form-control" [owlDateTimeTrigger]="dt1"  ngModel="" [owlDateTime]="dt1" placeholder="Start Date" name="startDate" required>
+                          <owl-date-time #dt1></owl-date-time>
+                          <br>
+                          <input  class="form-control" [owlDateTimeTrigger]="dt2"  ngModel="" [owlDateTime]="dt2" placeholder="End Date" name="endDate" required >
+                          <owl-date-time #dt2></owl-date-time>
+                          <br>
+                          <button [disabled]="!f.valid"  type="submit" class="btn btn-primary">Save</button>
+                          <button type="button" (click)="returnToCalendar()" class="btn btn-danger">Cancel</button>
+                        </form>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>

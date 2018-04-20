@@ -47,18 +47,39 @@ import {UpdateModuleComponent} from './pages/quiz/module/update-module/update-mo
 import {QuizTestComponent} from './pages/quiz/quiz-test/listQuiz/quiz-test.component';
 import {AddQuizComponent} from './pages/quiz/quiz-test/add-quiz/add-quiz.component';
 import {UpdateQuizComponent} from './pages/quiz/quiz-test/update-quiz/update-quiz.component';
-import { AddPictureComponent } from './pages/quiz/quiz-test/add-picture/add-picture.component';
-import { PassQuizComponent } from './pages/pass-quiz/pass-quiz.component'
-import { CountdownTimerModule } from 'ngx-countdown-timer';
-import { ListQuizComponent } from './pages/pass-quiz/list-quiz/list-quiz.component';
-import { ActifModuleComponent } from './pages/quiz/module/actif-module/actif-module.component';
-import { WatchVideosComponent } from './pages/watch-videos/watch-videos.component';
-import { VideoesByModuleComponent } from './pages/watch-videos/videos-by-module/videoes-by-module.component';
-import { VgCoreModule } from 'videogular2/core';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
-import { VgBufferingModule } from 'videogular2/buffering';
-import { EventsPlanningComponent } from './pages/events-planning/events-planning.component';
+import {AddPictureComponent} from './pages/quiz/quiz-test/add-picture/add-picture.component';
+import {PassQuizComponent} from './pages/pass-quiz/pass-quiz.component'
+import {CountdownTimerModule} from 'ngx-countdown-timer';
+import {ListQuizComponent} from './pages/pass-quiz/list-quiz/list-quiz.component';
+import {ActifModuleComponent} from './pages/quiz/module/actif-module/actif-module.component';
+import {WatchVideosComponent} from './pages/watch-videos/watch-videos.component';
+import {VideoesByModuleComponent} from './pages/watch-videos/videos-by-module/videoes-by-module.component';
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
+import {EventsPlanningComponent} from './pages/events-planning/events-planning.component';
+import {BroadcastComponent} from './pages/events/broadcast/broadcast.component';
+import {BroadcastByUserComponent} from './pages/broadcast-by-user/broadcast-by-user.component';
+import {
+  GoogleApiModule,
+  GoogleApiService,
+  GoogleAuthService,
+  NgGapiClientConfig,
+  NG_GAPI_CONFIG,
+  GoogleApiConfig
+} from 'ng-gapi';
+
+import {UserService} from './service/UserService';
+
+const gapiClientConfig: NgGapiClientConfig = {
+  client_id: '915647955437-99ac48e8fitl4ttknf30scfbjau1dv1h.apps.googleusercontent.com',
+  discoveryDocs: ['https://analyticsreporting.googleapis.com/$discovery/rest?version=v4'],
+  scope: [
+    'https://www.googleapis.com/auth/youtube'
+  ].join(' ')
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +112,9 @@ import { EventsPlanningComponent } from './pages/events-planning/events-planning
     ActifModuleComponent,
     WatchVideosComponent,
     VideoesByModuleComponent,
-    EventsPlanningComponent
+    EventsPlanningComponent,
+    BroadcastComponent,
+    BroadcastByUserComponent
 
 
   ],
@@ -120,9 +143,13 @@ import { EventsPlanningComponent } from './pages/events-planning/events-planning
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    })
   ],
-  providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService],
+  providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService , UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

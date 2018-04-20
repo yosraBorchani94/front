@@ -3,6 +3,8 @@ export class Event {
   title: String = '';
   startDate: Date;
   endDate: Date;
+  broadcastId: String = '';
+
   constructor() {
   }
 }
