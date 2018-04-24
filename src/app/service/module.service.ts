@@ -172,7 +172,11 @@ export class ModuleService {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.post(this.host + '/addUserToModule', {'id:': 0, 'score': score, 'idModule': idModule, 'idUser': idUser},
+    const data = new FormData();
+    data.append('idModule', idModule);
+    data.append('idUser', idUser);
+    data.append('score', score);
+    return this.http.post(this.host + '/addUserToModule', data ,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 

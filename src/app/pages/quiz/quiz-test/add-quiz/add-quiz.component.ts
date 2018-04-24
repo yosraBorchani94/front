@@ -73,7 +73,7 @@ export class AddQuizComponent implements OnInit {
     this.moduleService.getModuleByName(this.ModuleName.nom)
       .subscribe((data) => {
         this.module = data;
-        if (this.module.quiz.length > this.module.nbr_questions) {
+        if (this.module.quiz.length >= this.module.nbr_questions) {
           this.showNotifSuccess = true;
           this.showNotifWarning = false;
         } else {

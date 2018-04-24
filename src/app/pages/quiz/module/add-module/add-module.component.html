@@ -20,10 +20,13 @@
                   <div class="card-body">
                     <div class="card-block">
                       <form #f="ngForm" (ngSubmit)="onSaveModule(f.value)" novalidate>
+                        Module Name
                         <input class="form-control" ngModel="" type="text" name="nom"  placeholder="Module Name" required/>
                         <br>
+                        Duration
                         <input class="form-control" ngModel="" type="number" name="duree"  placeholder="Module duration (minutes)" required/>
                         <br>
+                        Number of question
                         <input class="form-control" ngModel="" type="number" name="nbr_questions"  placeholder="number of questions" required/>
                         <br>
                         <select  class="form-control"  name="level" [(ngModel)]="level">

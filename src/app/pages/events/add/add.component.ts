@@ -68,18 +68,25 @@ export class AddComponent implements OnInit {
           });
     }
   }
-
+  getToken () {
+    console.log('token ' , this.userService.getToken());
+    console.log('user  ' , this.userService.getCurrentUser());
+  }
 
   signOut () {
     this.userService.signOut();
   }
 
   public isLoggedIn(): boolean {
+
     return this.userService.isUserSignedIn();
+
   }
 
   public signIn() {
     this.userService.signIn();
+
+
   }
 
 

@@ -13,14 +13,15 @@ export class FileUploadService {
     this.jwtToken = localStorage.getItem('token');
   }
 
-  postFile(fileToUpload: File, username: String, idModule) {
+  postFile(fileToUpload: File, username, idModule) {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    const url = 'http://localhost:8081/uploadfile/' + username;
+    const url = 'http://localhost:8081/uploadfile';
     const data = new FormData();
     data.append('uploadfile', fileToUpload);
     data.append('idModule', idModule);
+    data.append('username', username);
     return this.httpClient.post(url, data, {headers: new HttpHeaders({'Authorization': this.jwtToken})})
   }
 

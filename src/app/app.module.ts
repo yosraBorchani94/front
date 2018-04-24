@@ -71,6 +71,8 @@ import {
 } from 'ng-gapi';
 
 import {UserService} from './service/UserService';
+import {ContactComponent} from './pages/contact/contact.component';
+import {ContactUsService} from './service/ContactUs.service';
 
 const gapiClientConfig: NgGapiClientConfig = {
   client_id: '915647955437-99ac48e8fitl4ttknf30scfbjau1dv1h.apps.googleusercontent.com',
@@ -114,7 +116,8 @@ const gapiClientConfig: NgGapiClientConfig = {
     VideoesByModuleComponent,
     EventsPlanningComponent,
     BroadcastComponent,
-    BroadcastByUserComponent
+    BroadcastByUserComponent,
+    ContactComponent
 
 
   ],
@@ -149,7 +152,7 @@ const gapiClientConfig: NgGapiClientConfig = {
       useValue: gapiClientConfig
     })
   ],
-  providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService , UserService],
+  providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService, UserService, ContactUsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

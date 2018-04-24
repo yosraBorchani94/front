@@ -33,6 +33,7 @@ import {VideoesByModuleComponent} from './pages/watch-videos/videos-by-module/vi
 import {EventsPlanningComponent} from './pages/events-planning/events-planning.component';
 import {BroadcastComponent} from './pages/events/broadcast/broadcast.component';
 import {BroadcastByUserComponent} from './pages/broadcast-by-user/broadcast-by-user.component';
+import {ContactComponent} from './pages/contact/contact.component';
 
 
 
@@ -137,6 +138,9 @@ const appRoutes: Routes = [
   },
   { path: 'liveByUser',
     component: BroadcastByUserComponent,
+  },
+  { path: 'contact',
+    component: ContactComponent,
   }
 
 

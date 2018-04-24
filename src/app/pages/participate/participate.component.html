@@ -28,7 +28,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  *ngFor="let e of events ; let i = index ">
+                      <tr  *ngFor="let e of acceptedEvent">
                         <td>{{e.title}}</td>
                         <td>{{e.startDate | date:'yyyy-MM-dd HH:mm a'}}</td>
                         <td>{{e.endDate | date:'yyyy-MM-dd HH:mm a'}}</td>
@@ -36,12 +36,12 @@
                           <form #f="ngForm" (ngSubmit)="onParticipate(f.value)">
                             <input type="hidden" [(ngModel)]="username" name="username" />
                             <input type="hidden" [(ngModel)]="e.id" name="idEvent" />
-                            <div *ngIf=test[i]>
+                            <div *ngIf=e.status>
                               <a class="info p-0">
                                 <i class="ft-check" (click)="unparticipate(f.value)" > Participated</i>
                               </a>
                             </div>
-                            <div *ngIf=!test[i]>
+                            <div *ngIf=!e.status>
                               <button type="submit" class="btn btn-success btn-sm"> To participate </button>
                             </div>
                           </form>

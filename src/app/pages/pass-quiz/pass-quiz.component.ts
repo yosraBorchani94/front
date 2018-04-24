@@ -48,12 +48,6 @@ export class PassQuizComponent implements OnInit {
     this.moduleService.getQuestionFromModuleShuffle(this.idModule)
       .subscribe(data => {
         this.questionList = data;
-        // if (this.questionList.urlPicture !== null) {
-        //   console.log(this.questionList.urlPicture)
-        //   // this.splited = this.questionList.urlPicture.split('assets');
-        //   // this.pathImage = 'assets' + this.pathImage[1];
-        //   console.log(this.pathImage)
-        // }
 
       }, err => {
         console.log(err);
@@ -63,7 +57,7 @@ export class PassQuizComponent implements OnInit {
     this.moduleService.getModule(this.idModule)
       .subscribe(data => {
         this.module = data;
-        console.log(this.module.duree);
+        console.log(this.module.duree + 'minutes');
         this.moduleService.convertMinutes(this.module.duree)
           .subscribe(data1 => {
               this.res = data1;

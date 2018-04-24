@@ -22,11 +22,11 @@ export class EventService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
-  getEventFromAcceptedEvent(id, username) {
+  getEventFromAcceptedEvent(username) {
     if (this.jwtToken == null) {
       this.loadToken();
     }
-    return this.http.post(this.host + '/accpetedEvent/' + id, username,
+    return this.http.post(this.host + '/accpetedEvent' , username,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
@@ -49,12 +49,20 @@ export class EventService {
   }
 
   participate(value) {
-    return this.http.post(this.host + '/acceptedUsers/', value,
+
+    const data = new FormData();
+    data.append('username', value.username);
+    data.append('idEvent', value.idEvent);
+    return this.http.post(this.host + '/acceptedUsers/', data,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
   unparticipate(value) {
-    return this.http.post(this.host + '/unparticipate/', value,
+    const data = new FormData();
+    data.append('username', value.username);
+    data.append('idEvent', value.idEvent);
+
+    return this.http.post(this.host + '/unparticipate/', data,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 

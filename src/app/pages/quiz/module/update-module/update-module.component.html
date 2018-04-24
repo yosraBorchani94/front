@@ -17,10 +17,13 @@
                 <div class="card-body">
                   <div class="card-block">
                     <!-- formumaire update starts-->
+                    Module Name
                     <input class="form-control" [(ngModel)]="module.nom" type="text" placeholder="Module Name" required/>
                     <br>
+                    Duration
                     <input class="form-control" [(ngModel)]="module.duree" type="text" placeholder="Module duration (minute)" required/>
                     <br>
+                    Number of question
                     <input class="form-control" [(ngModel)]="module.nbr_questions" type="text" placeholder="Module number of questions" required/>
                     <br>
                     <select  class="form-control"  name="level" [(ngModel)]="module.level">

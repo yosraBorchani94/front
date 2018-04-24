@@ -17,41 +17,27 @@ export class ParticipateComponent implements OnInit {
   test;
   acceptedEvent;
   event;
-  unparticip;
 
+  unparticip;
+  today = Date.now();
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public eventService: EventService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
-    // this.sub = Observable.interval(86400000)
-    //   .subscribe((val) => {
-    //       console.log('called');
-    //       this.sendSecondNotification();
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     });
-    this.eventService.getActualEvents()
-      .subscribe(data => {
-          this.test = [];
-          this.events = data;
-          this.events.forEach(e => {
-            this.eventService.getEventFromAcceptedEvent(e.id, this.username)
-              .subscribe(data1 => {
-                this.acceptedEvent = data1;
-                  if (this.acceptedEvent  === null) {
-                    // event does not exist in Accepted Users
-                    this.test.push(false)
-                  } else {
-                    this.test.push(true)
+    this.eventService.getEvents()
+      .subscribe(data1 => {
+       this.events = data1;
+        },
+        err => {
+          console.log(err);
+        });
 
-                  }
-                },
-                err => {
-                  console.log(err);
-                });
-          })
+
+
+    this.eventService.getEventFromAcceptedEvent(this.username)
+      .subscribe(data1 => {
+        this.acceptedEvent = data1;
         },
         err => {
           console.log(err);
@@ -62,11 +48,11 @@ export class ParticipateComponent implements OnInit {
     this.eventService.participate(value)
       .subscribe(data => {
           this.participate = data;
-          this.ngOnInit();
           this.eventService.getEvent(value.idEvent)
             .subscribe(d => {
               this.event = d;
               this.toastr.success('You have participated to ' + this.event.title, 'Success!');
+              this.ngOnInit()
             })
         },
         err => {
@@ -77,7 +63,7 @@ export class ParticipateComponent implements OnInit {
   unparticipate(value) {
     this.eventService.unparticipate(value)
       .subscribe(data => {
-          this.ngOnInit();
+        this.ngOnInit()
         },
         err => {
           console.log(err);
