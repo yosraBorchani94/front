@@ -17,23 +17,11 @@ export class ParticipateComponent implements OnInit {
   test;
   acceptedEvent;
   event;
-
-  unparticip;
-  today = Date.now();
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public eventService: EventService) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
-    this.eventService.getEvents()
-      .subscribe(data1 => {
-       this.events = data1;
-        },
-        err => {
-          console.log(err);
-        });
-
-
 
     this.eventService.getEventFromAcceptedEvent(this.username)
       .subscribe(data1 => {
@@ -70,7 +58,7 @@ export class ParticipateComponent implements OnInit {
         });
   }
 
-  sendSecondNotification() {
-    this.eventService.sendSecondNotification()
-  }
+  // sendSecondNotification() {
+  //   this.eventService.sendSecondNotification()
+  // }
 }
