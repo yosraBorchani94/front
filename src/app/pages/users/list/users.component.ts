@@ -11,7 +11,7 @@ import {ToastsManager} from 'ng2-toastr';
 export class UsersComponent implements OnInit {
   users: any;
   searchText;
-
+  usersWithRole;
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public usersService: UsersService, private router: Router) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -20,6 +20,14 @@ export class UsersComponent implements OnInit {
     this.usersService.getUsers()
       .subscribe(data => {
           this.users = data;
+        },
+        err => {
+          console.log(err);
+        });
+
+    this.usersService.getUsersWithRole()
+      .subscribe(data => {
+          this.usersWithRole = data;
         },
         err => {
           console.log(err);
@@ -39,7 +47,9 @@ export class UsersComponent implements OnInit {
       .subscribe(data => {
         this.users.splice(this.users.indexOf(users), 1);
         this.toastr.success('User  ' + users.username + '  deleted', 'Success!');
+        this.ngOnInit();
       }, err => {
+        this.ngOnInit();
         console.log(err);
       });
   }

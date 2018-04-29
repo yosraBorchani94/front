@@ -24,6 +24,13 @@ export class UsersService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  getUsersWithRole() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getUsersWithRole',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
   isAdmin() {
     for (const r of this.roles) {
       if (r.authority === 'ADMIN ROLE') {

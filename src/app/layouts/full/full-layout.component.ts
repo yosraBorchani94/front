@@ -1,12 +1,100 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {ModuleService} from '../../service/module.service';
+import {UsersService} from '../../service/users.service';
+import {VideoService} from '../../service/video.service';
+import {FileUploadService} from '../../service/file-upload.service';
+import {ToastsManager} from 'ng2-toastr';
 
 
 @Component({
-    selector: 'app-full-layout',
-    templateUrl: './full-layout.component.html',
-    styleUrls: ['./full-layout.component.scss']
+  selector: 'app-full-layout',
+  templateUrl: './full-layout.component.html',
+  styleUrls: ['./full-layout.component.scss']
 })
 
-export class FullLayoutComponent {
+export class FullLayoutComponent implements OnInit {
+  modules: any = '';
+  users: any = '';
+  videos: any = '';
+  documents: any = '';
+  NonAcceptedDocuments: any = '';
+  roleSession = sessionStorage.getItem('role');
+
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public fileUploadService: FileUploadService, public videoService: VideoService, public moduleService: ModuleService, public usersService: UsersService) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
+
+  ngOnInit() {
+    this.moduleService.getModules()
+      .subscribe(data => {
+          this.modules = data;
+        },
+        err => {
+          console.log(err);
+        });
+    this.fileUploadService.getNonAcceptedDocuments()
+      .subscribe(data => {
+          this.NonAcceptedDocuments = data;
+        },
+        err => {
+          console.log(err);
+        });
+
+    this.usersService.getUsers()
+      .subscribe(data => {
+          this.users = data;
+        },
+        err => {
+          console.log(err);
+        });
+
+    this.videoService.getVideos()
+      .subscribe(data => {
+          this.videos = data;
+        },
+        err => {
+          console.log(err);
+        });
+    this.fileUploadService.getDocuments()
+      .subscribe(data => {
+          this.documents = data;
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  AcceptDocument(document) {
+    this.fileUploadService.AcceptDocument(document)
+      .subscribe(data => {
+        this.NonAcceptedDocuments.splice(this.NonAcceptedDocuments.indexOf(document), 1);
+        this.toastr.success('Document ' + document.documentName + ' added ', 'Success!');
+        setTimeout(() => {
+          this.ngOnInit();
+        }, 1000);
+      }, err => {
+
+        console.log(err);
+        this.toastr.warning('Document not added', 'Warning!');
+      });
+
+
+  }
+
+  RefuseDocument(document) {
+    this.fileUploadService.RefuseDocument(document)
+      .subscribe(data => {
+        this.NonAcceptedDocuments.splice(this.NonAcceptedDocuments.indexOf(document), 1);
+        this.toastr.success('Document ' + document.documentName + ' deleted ', 'Success!');
+        setTimeout(() => {
+          this.ngOnInit();
+        }, 1000);
+      }, err => {
+
+        console.log(err);
+        this.toastr.warning('Document not deleted', 'Warning!');
+      });
+
+  }
 
 }

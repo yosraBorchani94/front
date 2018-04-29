@@ -69,10 +69,13 @@
                                                      (click)="downloadUserFile(f)">
                                                     <i class="ft-download font-medium-3 mr-2"></i>
                                                   </a>
-                                                  <a class="danger" data-original-title="" title="delete"
-                                                     (click)="deleteUserFile(f)">
-                                                    <i class="ft-trash font-medium-3 mr-2"></i>
-                                                  </a>
+
+                                                  <div *ngIf="this.roleSession === 'ADMIN ROLE' || this.roleSession === 'FORMATEUR ROLE'">
+                                                    <a class="danger" data-original-title="" title="delete"
+                                                       (click)="deleteUserFile(f)">
+                                                      <i class="ft-trash font-medium-3 mr-2"></i>
+                                                    </a>
+                                                  </div>
                                                 </td>
                                               </tr>
 

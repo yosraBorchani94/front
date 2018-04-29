@@ -13,6 +13,20 @@ export class FileUploadService {
     this.jwtToken = localStorage.getItem('token');
   }
 
+
+  postUserFile(fileToUpload: File, username, idModule) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    const url = 'http://localhost:8081/uploadUserfile';
+    const data = new FormData();
+    data.append('uploadfile', fileToUpload);
+    data.append('idModule', idModule);
+    data.append('username', username);
+    return this.httpClient.post(url, data, {headers: new HttpHeaders({'Authorization': this.jwtToken})})
+  }
+
+
   postFile(fileToUpload: File, username, idModule) {
     if (this.jwtToken == null) {
       this.loadToken();
@@ -89,6 +103,15 @@ export class FileUploadService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  getNonAcceptedDocuments() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.httpClient.get('http://localhost:8081/getNonAcceptedDocuments',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+
   deleteUserFile(fileName) {
     if (this.jwtToken == null) {
       this.loadToken();
@@ -113,4 +136,19 @@ export class FileUploadService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  AcceptDocument(document) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.httpClient.post('http://localhost:8081/AcceptDocument', document,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
+  RefuseDocument (document) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.httpClient.delete('http://localhost:8081/RefuseDocument/' + document.id,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
 }

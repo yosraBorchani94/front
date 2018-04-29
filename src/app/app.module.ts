@@ -61,26 +61,10 @@ import {VgBufferingModule} from 'videogular2/buffering';
 import {EventsPlanningComponent} from './pages/events-planning/events-planning.component';
 import {BroadcastComponent} from './pages/events/broadcast/broadcast.component';
 import {BroadcastByUserComponent} from './pages/broadcast-by-user/broadcast-by-user.component';
-import {
-  GoogleApiModule,
-  GoogleApiService,
-  GoogleAuthService,
-  NgGapiClientConfig,
-  NG_GAPI_CONFIG,
-  GoogleApiConfig
-} from 'ng-gapi';
-
-import {UserService} from './service/UserService';
 import {ContactComponent} from './pages/contact/contact.component';
 import {ContactUsService} from './service/ContactUs.service';
 
-const gapiClientConfig: NgGapiClientConfig = {
-  client_id: '915647955437-99ac48e8fitl4ttknf30scfbjau1dv1h.apps.googleusercontent.com',
-  discoveryDocs: ['https://analyticsreporting.googleapis.com/$discovery/rest?version=v4'],
-  scope: [
-    'https://www.googleapis.com/auth/youtube'
-  ].join(' ')
-};
+
 
 @NgModule({
   declarations: [
@@ -146,13 +130,9 @@ const gapiClientConfig: NgGapiClientConfig = {
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule,
-    GoogleApiModule.forRoot({
-      provide: NG_GAPI_CONFIG,
-      useValue: gapiClientConfig
-    })
+    VgBufferingModule
   ],
-  providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService, UserService, ContactUsService],
+  providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService, ContactUsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

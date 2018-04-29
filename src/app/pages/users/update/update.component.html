@@ -20,7 +20,8 @@
                     <!-- formumaire update starts-->
                     <div>
                       <label class="control-label">Username</label>
-                      <input class="form-control" type="text" [(ngModel)]="user.username" required/>
+                      <input class="form-control" type="text" [(ngModel)]="user.username" #email = "ngModel" email required/>
+                      <p class="alert alert-danger" *ngIf="email?.errors?.email">email error</p>
                     </div>
                     <br>
                     <div class="form-group">

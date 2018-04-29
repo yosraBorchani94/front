@@ -32,7 +32,7 @@ export class ListQuizComponent implements OnInit {
         });
   }
 
-  PassTheTest(id) {
+  PassTheTest(id, level) {
     this.moduleService.checkPassTheTest(id, this.username)
       .subscribe(data => {
           this.rslt = data;
@@ -47,11 +47,13 @@ export class ListQuizComponent implements OnInit {
             this.toastr.success('You succeeded the precedent exam u can take this level now', 'Success!');
           } else if (this.rslt === 3) {
             this.toastr.warning('You need to pass the precedent Module before taking this exam ', 'Warning!');
-          } else {
+          } else if (this.rslt === 4 && level === 1) {
             this.toastr.info('This is your first time taking this exam ', 'Information!');
             setTimeout(() => {
               this.router.navigate(['/passQuiz', id]);
             }, 2000);
+          } else {
+            this.toastr.warning('You need to pass the precedent Module before taking this exam ', 'Warning!');
           }
         },
         err => {

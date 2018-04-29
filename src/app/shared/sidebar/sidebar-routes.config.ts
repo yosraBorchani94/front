@@ -1,10 +1,7 @@
 import {RouteInfo} from './sidebar.metadata';
 
-export const ROUTES: RouteInfo[] = [
+export const ROUTESAdmin: RouteInfo[] = [
 
-  {
-    path: '', title: 'Admin', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-  },
   {
     path: '/users', title: 'Users', icon: 'ft-users', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
   },
@@ -48,15 +45,18 @@ export const ROUTES: RouteInfo[] = [
     badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,
     submenu: [
 
-      { path: '/quiz', title: 'Quiz', icon: 'ft-edit', class: '', badge: '',
-        badgeClass: '', isExternalLink: false, submenu: []},
-      { path: '/actifModule', title: 'Actif module', icon: 'ft-check-circle', class: '', badge: '',
-        badgeClass: '', isExternalLink: false, submenu: []}
+      {
+        path: '/quiz', title: 'Quiz', icon: 'ft-edit', class: '', badge: '',
+        badgeClass: '', isExternalLink: false, submenu: []
+      },
+      {
+        path: '/actifModule', title: 'Actif module', icon: 'ft-check-circle', class: '', badge: '',
+        badgeClass: '', isExternalLink: false, submenu: []
+      }
     ]
   },
-  {
-    path: '', title: 'User', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-  },
+];
+export const ROUTESUser: RouteInfo[] = [
 
   {
     path: '/participate', title: 'Participate To Event', icon: 'ft-check', class: '',
@@ -71,16 +71,19 @@ export const ROUTES: RouteInfo[] = [
     path: '/watchVideos', title: 'Watch Videos', icon: 'ft-video', class: '', badge: '', badgeClass: '', isExternalLink: false,
     submenu: []
   },
-
+  {
+    path: '/download', title: 'Download File', icon: 'ft-download', class: '', badge: '',
+    badgeClass: '', isExternalLink: false, submenu: []
+  },
   {
     path: '/listQuiz', title: 'Pass a quiz', icon: 'ft-align-left', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
   },
   {
     path: '/contact', title: 'Contact', icon: 'ft-phone', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
   },
-  {
-    path: '', title: 'Formateur', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-  },
+];
+export const ROUTESFormateur: RouteInfo[] = [
+
   {
     path: '', title: 'Documents', icon: 'ft-folder', class: 'has-sub', badge: '',
     badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false,

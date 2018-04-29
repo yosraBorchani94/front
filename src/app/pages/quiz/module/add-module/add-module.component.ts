@@ -36,7 +36,7 @@ export class AddModuleComponent implements OnInit {
           },
           err => {
             console.log(err);
-            this.toastr.warning('Duplicat module name', 'warning!');
+            this.toastr.warning('Duplicat module name/Level', 'warning!');
           });
     }
   }

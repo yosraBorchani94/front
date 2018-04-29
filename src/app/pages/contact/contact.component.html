@@ -22,7 +22,7 @@
                     <form #f="ngForm" (ngSubmit)="onSend(f.value)">
                       <div class="form-group">
                         <label class="control-label">Message:</label>
-                        <textarea class="form-control" ngModel="" type="text" name="message" required></textarea>
+                        <textarea class="form-control" [(ngModel)]="message" type="text" name="message" required></textarea>
                         <input type="hidden" name="user" [(ngModel)]="user" >
                         <input type="hidden" name="documentPath" [(ngModel)] = "documentPath" >
                       </div>

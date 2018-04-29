@@ -1,20 +1,136 @@
 <div class="wrapper">
-   <div class="app-sidebar" data-active-color="white" data-background-color="black" data-image="assets/img/sidebar-bg/01.jpg">
-        <app-sidebar></app-sidebar>
-        <div class="sidebar-background"></div>
-    </div>
-    <div class="main-panel">
-        <app-navbar></app-navbar>
-
-        <div class="main-content">
-            <div class="content-wrapper">
-                <div class="container-fluid">
-                    <router-outlet></router-outlet>
+  <div class="app-sidebar" data-active-color="white" data-background-color="black"
+       data-image="assets/img/sidebar-bg/01.jpg">
+    <app-sidebar></app-sidebar>
+    <div class="sidebar-background"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div *ngIf="this.roleSession === 'ADMIN ROLE'">
+      <div class="main-content">
+        <div class="content-wrapper">
+          <div class="container-fluid">
+            <router-outlet></router-outlet>
+            <div class="row">
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div class="card gradient-blackberry">
+                  <div class="card-body">
+                    <div class="card-block pt-2 pb-0">
+                      <div class="media">
+                        <div class="media-body white text-left">
+                          <h3 class="font-large-1 mb-0">{{users.length}}</h3>
+                          <span>Total Users</span>
+                        </div>
+                        <div class="media-right white text-right">
+                          <i class="icon-users font-large-1"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div class="card gradient-ibiza-sunset">
+                  <div class="card-body">
+                    <div class="card-block pt-2 pb-0">
+                      <div class="media">
+                        <div class="media-body white text-left">
+                          <h3 class="font-large-1 mb-0">{{documents.length}}</h3>
+                          <span>Total documents</span>
+                        </div>
+                        <div class="media-right white text-right">
+                          <i class="icon-layers font-large-1"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div class="card gradient-green-tea">
+                  <div class="card-body">
+                    <div class="card-block pt-2 pb-0">
+                      <div class="media">
+                        <div class="media-body white text-left">
+                          <h3 class="font-large-1 mb-0">{{videos.length}}</h3>
+                          <span>Total videos</span>
+                        </div>
+                        <div class="media-right white text-right">
+                          <i class="icon-social-youtube font-large-1"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                <div class="card gradient-pomegranate">
+                  <div class="card-body">
+                    <div class="card-block pt-2 pb-0">
+                      <div class="media">
+                        <div class="media-body white text-left">
+                          <h3 class="font-large-1 mb-0">{{modules.length}}</h3>
+                          <span>Total Modules</span>
+                        </div>
+                        <div class="media-right white text-right">
+                          <i class="icon-docs font-large-1"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-4 col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title mb-0">Suggested Document</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <div *ngIf="NonAcceptedDocuments.length === 0 ">
+                        <a class="warning">
+                          <i class="ft-info font-medium-3 mr-2"> </i>
+                          No suggested documents
+                        </a>
+                      </div>
+                      <div *ngFor=" let d of NonAcceptedDocuments ">
+                        <div class="media mb-1">
+                          <a>
+                            <img alt="96x96" class="media-object d-flex mr-3 bg-primary height-50 rounded-circle"
+                                 src="assets/img/portrait/small/file.png">
+                          </a>
+                          <div class="media-body">
+                            <h4 class="font-medium-1 mt-1 mb-0">{{d.documentName}}</h4>
+                            <p class="text-muted font-small-3">By {{d.user.username}}</p>
+                          </div>
+                          <div class="mt-1">
+                            <a class="success p-0">
+                              <i class="ft-plus-circle" (click)="AcceptDocument(d)"></i>
+                            </a>
+                            <a class="danger p-0">
+                              <i class="ft-trash" (click)="RefuseDocument(d)"></i>
+                            </a>
+                            <br/>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
+          </div>
         </div>
-        <app-footer></app-footer>
+      </div>
     </div>
+
+  </div>
 </div>
 
 

@@ -22,6 +22,7 @@ export class ContactComponent implements OnInit {
   documentDisplay = false;
   documentPath;
   user;
+  message;
 
   constructor(public usersService: UsersService, public toastr: ToastsManager, vcr: ViewContainerRef, public fileUploadService: FileUploadService, public moduleService: ModuleService, public contactUsService: ContactUsService) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -64,7 +65,7 @@ export class ContactComponent implements OnInit {
       this.moduleService.getModuleByName(this.ModuleName.nom)
         .subscribe(data => {
             this.module = data;
-            this.fileUploadService.postFile(file, this.username, this.module.id)
+            this.fileUploadService.postUserFile(file, this.username, this.module.id)
               .subscribe(data1 => {
                 this.toastr.success('File ' + file.name + '  uploaded', 'Success!');
               }, error => {
@@ -92,10 +93,11 @@ export class ContactComponent implements OnInit {
   }
 
   onSend(value) {
-    console.log(value)
+    console.log(value.message)
     this.contactUsService.sendMessage(value)
       .subscribe(data => {
           this.toastr.success('Message sent', 'Success!');
+          this.message = '';
         },
         err => {
           console.log(err);

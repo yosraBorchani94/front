@@ -23,6 +23,7 @@ export class DownloadComponent implements OnInit {
   document;
   documentsList: any = '';
   documentsListByUser: any = '';
+  roleSession = sessionStorage.getItem('role');
 
   constructor(private router: Router, public toastr: ToastsManager, vcr: ViewContainerRef, public fileUploadService: FileUploadService, public moduleService: ModuleService) {
     this.toastr.setRootViewContainerRef(vcr);
