@@ -15,14 +15,14 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Add Picture to Question</h4>
+                    <h4 class="card-title" translate>Add Picture to Question</h4>
                   </div>
                   <div class="card-body">
                     <div class="card-block">
                         <input class="form-control" [(ngModel)]="quiz.questionName" type="text" name="questionName" disabled/>
                         <br>
                         <br>
-                        <label class="control-label">Picture:</label>
+                        <label class="control-label" translate>Picture</label>
                         <div class="col-md-6 col-lg-2">
                           <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"  (click)="fileOverBase($event);fileInput.click()" class="py-4 mb-2 text-center font-medium-5 text-uppercase grey my-drop-zone">
                             Click here
@@ -36,17 +36,17 @@
                               <td><strong>{{ item?.file?.name }}</strong></td>
                               <td nowrap>
                                 <button type="button" class="btn btn-raised btn-success btn-sm" (click)="item.upload()" (click)="upload(item._file)" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                  <span class="fa fa-upload"></span> Upload
+                                  <span class="fa fa-upload">Upload</span>
                                 </button>
                                 <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                  <span class="fa fa-trash"></span> Remove
+                                  <span class="fa fa-trash" translate>Remove</span>
                                 </button>
                               </td>
                             </tr>
                             </tbody>
                           </table>
                         </div>
-                      <button type="button" (click)="returnToQuiz()" class="btn btn-danger">Skip this step</button>
+                      <button type="button" (click)="returnToQuiz()" class="btn btn-danger" translate>Skip this step</button>
                     </div>
 
                   </div>

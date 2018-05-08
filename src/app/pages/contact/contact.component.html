@@ -15,34 +15,34 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-header">
-                    <h4 class="card-title">Contact Us </h4>
+                    <h4 class="card-title" translate>Contact Us</h4>
                   </div>
                   <div class="card-block">
                     <!--contact Start-->
                     <form #f="ngForm" (ngSubmit)="onSend(f.value)">
                       <div class="form-group">
-                        <label class="control-label">Message:</label>
+                        <label class="control-label">Message</label>
                         <textarea class="form-control" [(ngModel)]="message" type="text" name="message" required></textarea>
                         <input type="hidden" name="user" [(ngModel)]="user" >
                         <input type="hidden" name="documentPath" [(ngModel)] = "documentPath" >
                       </div>
                       <div class="form-group">
                         <button type="submit" [disabled]="!f.valid" data-dismiss="modal" class="btn btn-success float-lg-right">
-                          Send
+                          <span translate>Send</span>
                         </button>
                       </div>
                     </form>
                     <!--contact Ends-->
                     <br>
                     <div class="card-header">
-                      <h4 class="card-title" (click)="divDocument ();" >Click here to add document </h4>
+                      <h4 class="card-title" (click)="divDocument ();" translate>Click here to add document</h4>
                     </div>
                     <!--UploadFole Starts-->
                     <div *ngIf="documentDisplay">
                     <section id="file-upload">
                       <div class="card">
                         <br>
-                        <label>Choose Module :
+                        <label>Module
                           <select  class="form-control" [(ngModel)]="ModuleName" name="module">
                             <option *ngFor="let m of modules" [ngValue]="m">{{m.nom}}</option>
                           </select></label>
@@ -61,7 +61,7 @@
                           </div>
                           <div class="row">
                             <div class="col-md-3">
-                              <h4>Selected files</h4>
+                              <h4 translate>Selected files</h4>
                               <label class="custom-file">
                                 <input type="file" ng2FileSelect [uploader]="uploader" class="custom-file-input">
                                 <span class="custom-file-control"></span>
@@ -69,12 +69,12 @@
                             </div>
 
                             <div class="col-md-9">
-                              <p>Queue length: {{ uploader?.queue?.length }}</p>
+                              <p> <span translate>Queue length</span>  {{ uploader?.queue?.length }}</p>
 
                               <table class="table">
                                 <thead>
                                 <tr>
-                                  <th width="50%">Name</th>
+                                  <th width="50%" translate>Name</th>
                                   <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -83,27 +83,27 @@
                                   <td><strong>{{ item?.file?.name }}</strong></td>
                                   <td nowrap>
                                     <button type="button" class="btn btn-raised btn-success btn-sm" (click)="upload(item._file)" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                                      <span class="fa fa-upload"></span> Upload
+                                      <span class="fa fa-upload" >Upload</span>
                                     </button>
                                     <button type="button" class="btn btn-raised btn-danger btn-sm" (click)="item.remove()">
-                                      <span class="fa fa-trash"></span> Remove
+                                      <span class="fa fa-trash" translate>Remove</span>
                                     </button>
                                   </td>
                                 </tr>
                                 </tbody>
                               </table>
                               <div>
-                                <p>Queue progress:
+                                <p translate>Queue progress
                                   <ngb-progressbar type="primary" [value]="uploader.progress"></ngb-progressbar>
                                 </p>
                                 <button type="button" class="btn btn-raised btn-success" (click)="uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                                  <span class="fa fa-upload"></span> Upload all
+                                  <span class="fa fa-upload" translate> Upload all</span>
                                 </button>
                                 <button type="button" class="btn btn-raised btn-warning" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                                  <span class="fa fa-ban"></span> Cancel all
+                                  <span class="fa fa-ban" translate> Cancel all</span>
                                 </button>
                                 <button type="button" class="btn btn-raised btn-danger" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                                  <span class="fa fa-trash"></span> Remove all
+                                  <span class="fa fa-trash" translate> Remove all</span>
                                 </button>
                               </div>
                             </div>

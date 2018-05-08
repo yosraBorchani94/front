@@ -13,7 +13,7 @@
             <div class="col-sm-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">update User: {{user.username}} </h4>
+                  <h4><span class="card-title" translate>Update User   <b>{{user.username}} </b> </span></h4>
                 </div>
                 <div class="card-body">
                   <div class="card-block">
@@ -32,18 +32,18 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label class="control-label">Password</label>
+                      <label class="control-label" translate>Password</label>
                       <input class="form-control" [(ngModel)]="user.password" type="password" required/>
                     </div>
 
                     <div class="form-group">
-                      <label class="control-label">Repassword</label>
+                      <label class="control-label" translate>Repassword</label>
                       <input class="form-control" [(ngModel)]="user.repassword" type="password" name="repassword"
                              required/>
                     </div>
 
-                    <button class="btn btn-success" (click)="updateUser()">Save</button>
-                    <button (click)="OnCancel()" class="btn btn-danger" value="Submit">Cancel</button>
+                    <button class="btn btn-success" (click)="updateUser()" translate>Save</button>
+                    <button (click)="OnCancel()" class="btn btn-danger" value="Submit" translate>Cancel</button>
                     <!-- formumaire update starts-->
                   </div>
                 </div>

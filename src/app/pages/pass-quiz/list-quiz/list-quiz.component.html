@@ -19,13 +19,13 @@
                   </div>
                   <div class="card-block">
                     <!--List Events Start-->
-                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="{{'Search...' | translate}}">
                     <hr>
                     <table show-filter="true" class="table">
                       <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Level</th>
+                        <th translate>Title</th>
+                        <th translate>Level</th>
                         <th>Operations</th>
                       </tr>
                       </thead>
@@ -36,11 +36,11 @@
                         <td>
                           <div *ngIf="!m.totalQuestions">
                           <span class="d-inline-block" tabindex="0" placement="top" ngbTooltip="Admin Still working on it">
-                            <button class="btn btn-outline-primary mr-1 mb-1" style="pointer-events: none;" type="button" disabled>Take the Quiz</button>
+                            <button class="btn btn-outline-primary mr-1 mb-1" style="pointer-events: none;" type="button" disabled translate>Take the Quiz</button>
                           </span>
                           </div>
                           <div *ngIf="m.totalQuestions">
-                            <button class="btn btn-outline-primary mr-1 mb-1" type="button" (click)="PassTheTest(m.id , m.level)">Take the Quiz</button>
+                            <button class="btn btn-outline-primary mr-1 mb-1" type="button" (click)="PassTheTest(m.id , m.level)" translate>Take the Quiz</button>
                           </div>
                         </td>
                       </tr>

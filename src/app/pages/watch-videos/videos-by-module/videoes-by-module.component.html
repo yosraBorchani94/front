@@ -13,7 +13,7 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Get Started </h4>
+                    <h4 class="card-title" translate>Get Started </h4>
                   </div>
                   <div class="card-body">
                     <div class="card-block">
@@ -22,7 +22,7 @@
                         <!-- Modal start -->
                           <ng-template #content let-c="close" let-d="dismiss">
                             <div class="modal-header">
-                              <h4 class="modal-title">Video : <b>{{video.name}}</b></h4>
+                              <h4 class="modal-title">Video  :  <b>{{video.name}}</b></h4>
                               <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -42,7 +42,7 @@
 
                                 <div class="card">
                                   <div class="card-header">
-                                    <h4> About this video </h4>
+                                    <h4 translate>About this video</h4>
                                   </div>
                                   <div class="card-block">
                                     <div class="row">
@@ -55,7 +55,7 @@
                               </section>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+                              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')" translate>Close</button>
                             </div>
                           </ng-template>
                         <!-- Modal ends -->
@@ -66,7 +66,7 @@
                               <img src="../../../assets/img/gallery/1.jpg" />
                               <figcaption>
                                 <h2>{{v.name}}</h2>
-                                <p> Preview Course <span class="ft-play-circle font-medium-2"> </span></p>
+                                <p translate>Preview Course<span class="ft-play-circle font-medium-2"> </span></p>
                               </figcaption>
                             </figure>
                           </div>

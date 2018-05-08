@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
     this.usersService.deleteUser(users.id)
       .subscribe(data => {
         this.users.splice(this.users.indexOf(users), 1);
-        this.toastr.success('User  ' + users.username + '  deleted', 'Success!');
+        this.toastr.success('User' + users.username + '  deleted', 'Success!');
         this.ngOnInit();
       }, err => {
         this.ngOnInit();

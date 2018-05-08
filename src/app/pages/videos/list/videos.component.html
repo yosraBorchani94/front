@@ -18,9 +18,9 @@
                   <div class="card-body">
                     <div class="card-block">
                       <!--List videos start-->
-                      <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                      <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="{{'Search...' | translate}}">
                       <hr>
-                      <button class="btn btn-primary" (click)="newVideo()">New video</button>
+                      <button class="btn btn-primary" (click)="newVideo()" translate>New video</button>
 
                       <ngb-accordion [closeOthers]="true"  #acc="ngbAccordion">
                         <ngb-panel *ngFor="let m of modules">
@@ -31,7 +31,7 @@
                             <table show-filter="true" class="table">
                               <thead>
                               <tr>
-                                <th>name</th>
+                                <th translate>Name</th>
                                 <th >URL</th>
                                 <th width="16%">Operation</th>
                               </tr>

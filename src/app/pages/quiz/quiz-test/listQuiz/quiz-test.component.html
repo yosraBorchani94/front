@@ -14,21 +14,21 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-header">
-                    <h4 class="card-title">Events </h4>
+                    <h4 class="card-title">Quiz </h4>
                   </div>
                   <div class="card-block">
                     <!--Questions Start-->
 
                     <ng-template #content let-c="close" let-d="dismiss">
                       <div class="modal-header">
-                        <h4 class="modal-title">View Question</h4>
+                        <h4 class="modal-title" translate>View Question</h4>
                         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
                         <p><b>Question : </b> {{questionModal}}</p>
-                        <p><b>Answers: </b></p>
+                        <p><b translate >Answers </b></p>
                         <li>{{ answersModal.choice1}}
                         <span *ngIf="answersModal.checkbox1">
                           <a class="success">
@@ -62,13 +62,13 @@
 
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')" translate>Close</button>
                       </div>
                     </ng-template>
 
-                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="{{'Search...' | translate}}">
                     <hr>
-                    <button type="button" class="btn btn-primary" (click)="newQuestion()">New Question</button>
+                    <button type="button" class="btn btn-primary" (click)="newQuestion()" translate>New Question</button>
                     <ngb-accordion [closeOthers]="true"  #acc="ngbAccordion">
                       <ngb-panel *ngFor="let m of modules">
                         <ng-template ngbPanelTitle>

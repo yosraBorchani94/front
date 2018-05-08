@@ -7,8 +7,8 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-header">
-                    <h2 class="card-title">Pass the Quiz </h2>
-                    <p  class="card-title"> <span class="ft-alert-triangle warning"> At least one answer is correct </span></p>
+                    <h2 class="card-title" translate>Pass the Quiz</h2>
+                    <p  class="card-title"> <span class="ft-alert-triangle warning" translate>At least one answer is correct</span></p>
                     <h2>{{countDown | async}}</h2>
                     <h1>
                       {{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
@@ -48,7 +48,7 @@
                       </tr>
                       </tbody>
                     </table>
-                    <button type="button" (click)="caluclScore()" class="btn btn-success">Result</button>
+                    <button type="button" (click)="caluclScore()" class="btn btn-success" translate>Result</button>
                   </div>
                 </div>
           </div>

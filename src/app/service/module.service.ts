@@ -30,6 +30,21 @@ export class ModuleService {
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 
+  getScoreModuleByUser(username) {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.post(this.host + '/getScoreModuleByUser', username,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+  getScoreModuleAllUser() {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getScoreModuleAllUser',
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+  }
+
   deleteModule(id) {
     if (this.jwtToken == null) {
       this.loadToken();
@@ -176,7 +191,7 @@ export class ModuleService {
     data.append('idModule', idModule);
     data.append('idUser', idUser);
     data.append('score', score);
-    return this.http.post(this.host + '/addUserToModule', data ,
+    return this.http.post(this.host + '/addUserToModule', data,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
 

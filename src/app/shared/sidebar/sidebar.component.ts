@@ -3,7 +3,7 @@ import {ROUTESAdmin} from './sidebar-routes.config';
 import {ROUTESUser} from './sidebar-routes.config';
 import {ROUTESFormateur} from './sidebar-routes.config';
 import {Router, ActivatedRoute} from '@angular/router';
-
+import {TranslateService} from 'ng2-translate';
 declare var $: any;
 
 @Component({
@@ -16,8 +16,12 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   roleSession = sessionStorage.getItem('role');
 
-  constructor(private router: Router,
+  constructor(private router: Router, private translate: TranslateService,
               private route: ActivatedRoute) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
 
   ngOnInit() {

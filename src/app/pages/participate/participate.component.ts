@@ -17,6 +17,7 @@ export class ParticipateComponent implements OnInit {
   test;
   acceptedEvent;
   event;
+  searchText;
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private router: Router, public eventService: EventService) {
     this.toastr.setRootViewContainerRef(vcr);
   }

@@ -14,20 +14,20 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-header">
-                    <h4 class="card-title">Events </h4>
+                    <h4 class="card-title" translate>Events </h4>
                   </div>
                   <div class="card-block">
                     <!--List Events Start-->
-                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="{{'Search...' | translate}}">
                     <hr>
-                    <button type="button" class="btn btn-primary" (click)="newEvent()" >New Event</button>
+                    <button type="button" class="btn btn-primary" (click)="newEvent()" translate>New Event</button>
                     <table show-filter="true" class="table">
                       <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Status</th>
+                        <th translate>Title</th>
+                        <th translate>Start Date</th>
+                        <th translate>End Date</th>
+                        <th translate>Status</th>
                         <th>Operations</th>
                       </tr>
                       </thead>
@@ -36,9 +36,9 @@
                         <td>{{e.title}}</td>
                         <td>{{e.startDate | date:'yyyy-MM-dd HH:mm a'}}</td>
                         <td>{{e.endDate | date:'yyyy-MM-dd HH:mm a'}}</td>
-                        <td *ngIf="e.startDate < today"><span class="badge badge-danger mr-1">Finished</span></td>
-                        <td *ngIf="e.startDate === today"> <span class="badge badge-success mr-1">on air </span></td>
-                        <td *ngIf="e.startDate > today"> <span class="badge badge-info mr-1">Upcoming </span></td>
+                        <td *ngIf="e.startDate < today"><span class="badge badge-danger mr-1" translate>Finished</span></td>
+                        <td *ngIf="e.startDate === today"> <span class="badge badge-success mr-1" translate>on air </span></td>
+                        <td *ngIf="e.startDate > today"> <span class="badge badge-info mr-1" translate>Upcoming </span></td>
                         <td>
                           <!--<a class="success p-0" data-original-title="" title=""(click)="onUpadate(e.id)">-->
                             <!--<i class="ft-edit-2 font-medium-3 mr-2"></i>-->

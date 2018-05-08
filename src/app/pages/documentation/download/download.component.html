@@ -14,7 +14,7 @@
           <div class="col-md-12 col-lg-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Download</h4>
+                <h4 class="card-title" translate>Download</h4>
                 <br>
 
               </div>
@@ -23,7 +23,7 @@
                 <div class="card-block">
                   <ngb-tabset>
                     <ngb-tab>
-                      <ng-template ngbTabTitle><b>Your Files</b></ng-template>
+                      <ng-template ngbTabTitle><b translate>Your Files</b></ng-template>
                       <ng-template ngbTabContent>
                         <!--downloading Starts-->
                         <section>
@@ -41,19 +41,19 @@
 
                                           <br>
                                           <div *ngIf="documentsByModuleByUser.length === 0">
-                                            <a class="warning">
+                                            <a translate class="warning">
                                               <i class="ft-info font-medium-3 mr-2"> </i>
-                                              You haven't uploaded Files into this module yet
+                                              MsgNotFoundUploadDoc
                                             </a>
                                           </div>
                                           <div *ngIf="documentsByModuleByUser.length > 0">
                                             <input type="text" [(ngModel)]="search" name="searchText"
-                                                   placeholder="Search...">
+                                                   placeholder="{{'Search...' | translate}}">
                                             <br>
                                             <table show-filter="true" class="table">
                                               <thead>
                                               <tr>
-                                                <th>File name</th>
+                                                <th translate>Name</th>
                                                 <th>Module</th>
                                                 <th>Operations</th>
                                               </tr>
@@ -98,7 +98,7 @@
                       </ng-template>
                     </ngb-tab>
                     <ngb-tab>
-                      <ng-template ngbTabTitle><b>All the Files</b></ng-template>
+                      <ng-template ngbTabTitle><b translate >All the Files</b></ng-template>
                       <ng-template ngbTabContent>
                         <!--downloading Starts-->
                         <section id="advanced">
@@ -116,15 +116,15 @@
                                         <ng-template ngbPanelContent>
 
                                           <div *ngIf="documentsByModule.length === 0">
-                                            <a class="warning">
+                                            <a translate class="warning">
                                               <i class="ft-info font-medium-3 mr-2"> </i>
-                                              You haven't uploaded Files into this module yet
+                                              MsgNotFoundUploadDocs
                                             </a>
                                           </div>
                                           <div *ngIf="documentsByModule.length > 0">
 
                                             <input type="text" [(ngModel)]="search" name="searchText"
-                                                   placeholder="Search...">
+                                                   placeholder="{{'Search...' | translate}}">
                                             <br>
                                             <table show-filter="true" class="table">
                                               <thead>

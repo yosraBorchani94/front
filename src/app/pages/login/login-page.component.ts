@@ -9,6 +9,7 @@ import {AuthenticationService} from '../../service/authentification.service';
 
 export class LoginPageComponent implements OnInit {
   mode = 0;
+
   constructor(public authService: AuthenticationService , private router: Router) { }
 
   ngOnInit() {

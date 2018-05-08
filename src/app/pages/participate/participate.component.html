@@ -14,21 +14,24 @@
               <div class="card">
                 <div class="card-body">
                   <div class="card-header">
-                    <h4 class="card-title">Events </h4>
+                    <h4 class="card-title"  translate>Events</h4>
                   </div>
                   <div class="card-block">
+
                     <!--List Events Start-->
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="{{'Search...' | translate}}">
+                    <hr>
                     <table show-filter="true" class="table">
                       <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Status</th>
+                        <th translate>Title</th>
+                        <th translate>Start Date</th>
+                        <th translate>End Date</th>
+                        <th translate>Status</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr  *ngFor="let e of acceptedEvent">
+                      <tr  *ngFor="let e of acceptedEvent  |filter: searchText | paginate: { itemsPerPage: 6, currentPage: p}">
                         <td>{{e.title}}</td>
                         <td>{{e.startDate | date:'yyyy-MM-dd HH:mm a'}}</td>
                         <td>{{e.endDate | date:'yyyy-MM-dd HH:mm a'}}</td>
@@ -38,15 +41,16 @@
                             <input type="hidden" [(ngModel)]="e.id" name="idEvent" />
                             <div *ngIf=e.status>
                               <a class="info p-0">
-                                <i class="ft-check" (click)="unparticipate(f.value)" > Participated</i>
+                                <i class="ft-check" (click)="unparticipate(f.value)" translate>Participated</i>
                               </a>
                             </div>
                             <div *ngIf=!e.status>
-                              <button type="submit" class="btn btn-success btn-sm"> To participate </button>
+                              <button type="submit" class="btn btn-success btn-sm"translate>To participate</button>
                             </div>
                           </form>
                         </td>
                       </tr>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
                       </tbody>
                     </table>
                     <!--List Events Ends-->

@@ -15,7 +15,7 @@ export class UpdateComponent implements OnInit {
   roles;
   roleName;
   roleValue;
-
+  username = sessionStorage.getItem('username');
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, public activatedRoute: ActivatedRoute,
               public usersService: UsersService, public router: Router) {
     this.idUser = activatedRoute.snapshot.params['id'];
@@ -45,9 +45,11 @@ export class UpdateComponent implements OnInit {
          .subscribe(resp => {
              this.user = resp;
              this.toastr.success('User updated', 'Success!');
-             setTimeout(() => {
-               this.router.navigate(['/users']);
-             }, 2000);
+             if (this.user.username === this.username ) {
+               setTimeout(() => {
+                 this.router.navigate(['/login']);
+               }, 2000);
+             }
            },
            err => {
              console.log('err' + err);

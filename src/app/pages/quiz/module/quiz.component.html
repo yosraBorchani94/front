@@ -18,15 +18,15 @@
                   </div>
                   <div class="card-block">
                     <!--List Events Start-->
-                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="Search...">
+                    <input type="text" [(ngModel)]="searchText" name="searchText" placeholder="{{'Search...' | translate}}">
                     <hr>
-                    <button type="button" class="btn btn-primary" (click)="newModule()" >New Module</button>
+                    <button type="button" class="btn btn-primary" (click)="newModule()" translate>New Module</button>
                     <table show-filter="true" class="table">
                       <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Time</th>
-                        <th>Total Questions</th>
+                        <th translate>Title</th>
+                        <th translate>Time</th>
+                        <th >Total Questions</th>
                         <th>Operations</th>
                       </tr>
                       </thead>

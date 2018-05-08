@@ -23,4 +23,12 @@ export class ContactUsService {
     return this.http.post(this.host + '/sendMessage', value ,
       {headers: new HttpHeaders({'Authorization': this.jwtToken})});
   }
+  getMessage () {
+    if (this.jwtToken == null) {
+      this.loadToken();
+    }
+    return this.http.get(this.host + '/getMessage' ,
+      {headers: new HttpHeaders({'Authorization': this.jwtToken})});
+
+  }
 }

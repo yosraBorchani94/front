@@ -34,8 +34,7 @@ export class PassQuizComponent implements OnInit {
   subscription;
   moduleInstance;
   QuizInstance;
-  splited: any = '';
-  pathImage;
+
 
   constructor(public sanitizer: DomSanitizer, public activatedRoute: ActivatedRoute, private http: HttpClient, public toastr: ToastsManager, vcr: ViewContainerRef,
               private router: Router, public moduleService: ModuleService, public usersService: UsersService) {
@@ -44,40 +43,39 @@ export class PassQuizComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.moduleService.getQuestionFromModuleShuffle(this.idModule)
+        .subscribe(data => {
+          this.questionList = data;
 
-    this.moduleService.getQuestionFromModuleShuffle(this.idModule)
-      .subscribe(data => {
-        this.questionList = data;
-
-      }, err => {
-        console.log(err);
-      });
+        }, err => {
+          console.log(err);
+        });
 
 
-    this.moduleService.getModule(this.idModule)
-      .subscribe(data => {
-        this.module = data;
-        console.log(this.module.duree + 'minutes');
-        this.moduleService.convertMinutes(this.module.duree)
-          .subscribe(data1 => {
-              this.res = data1;
-              console.log(this.res)
-              this.startTimer();
-            },
-            err => {
-              console.log(err);
-            });
-      }, err => {
-        console.log(err);
-      });
+      this.moduleService.getModule(this.idModule)
+        .subscribe(data => {
+          this.module = data;
+          console.log(this.module.duree + 'minutes');
+          this.moduleService.convertMinutes(this.module.duree)
+            .subscribe(data1 => {
+                this.res = data1;
+                console.log(this.res)
+                this.startTimer();
+              },
+              err => {
+                console.log(err);
+              });
+        }, err => {
+          console.log(err);
+        });
 
-    this.usersService.getUserByUsername(this.username)
-      .subscribe(data => {
-        this.user = data;
-        this.idUser = this.user.id;
-      }, err => {
-        console.log(err);
-      });
+      this.usersService.getUserByUsername(this.username)
+        .subscribe(data => {
+          this.user = data;
+          this.idUser = this.user.id;
+        }, err => {
+          console.log(err);
+        });
   }
 
   caluclScore() {
@@ -100,7 +98,7 @@ export class PassQuizComponent implements OnInit {
             /***********/
             this.stopTime();
             setTimeout(() => {
-              this.router.navigateByUrl('/quiz');
+              this.router.navigateByUrl('/listQuiz');
             }, 2000);
           }, err => {
             console.log(err);
@@ -136,11 +134,12 @@ export class PassQuizComponent implements OnInit {
         this.hoursDisplay = this.getHours(this.ticks);
         if ((this.minutesDisplay === this.res.minutes) && (this.hoursDisplay === this.res.hours)) {
           this.toastr.warning('Time is up ', 'Warning!');
-          // this.caluclScore();
+          this.caluclScore();
           this.stopTime();
           setTimeout(() => {
             this.router.navigateByUrl('/quiz');
           }, 2000);
+          this.ngOnInit();
         }
       }
     );

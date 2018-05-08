@@ -21,31 +21,32 @@
                       <!--List videos start-->
 
                       <div class="modal-body">
+                        <label>Module</label>
                         <select class="form-control" [(ngModel)]="moduleName" name="module"  (change)="update()">
                           <option *ngFor="let m of modules" [ngValue]="m.nom" >{{m.nom}}</option>
                         </select>
                         <br>
                         <div class="form-group">
-                          <label class="control-label">Video Name: </label>
+                          <label class="control-label" translate>Name</label>
                           <input class="form-control" [(ngModel)]="video.name" type="text" name="name" required/>
                         </div>
                         <div class="form-group">
-                          <label class="control-label">URL: </label>
+                          <label class="control-label">URL </label>
                           <input class="form-control" [(ngModel)]="video.url" type="text" name="url" #url="ngModel" url
                                  required/>
                           <p class="alert alert-danger" *ngIf="url?.errors?.url">Enter a valid url</p>
                         </div>
                         <div class="form-group">
-                          <label class="control-label">Description:</label>
+                          <label class="control-label">Description</label>
                           <textarea class="form-control" [(ngModel)]="video.description" type="text" name="description"
                                     required></textarea>
                         </div>
                         <div class="form-group">
                           <button type="button" data-dismiss="modal" class="btn btn-success" (click)="updateVideo()"
-                                  [disabled]="url?.errors?.url">Submit
+                                  [disabled]="url?.errors?.url" translate>Save
                           </button>
 
-                          <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+                          <button type="button" class="btn btn-danger" (click)="close()" translate>Cancel</button>
                         </div>
                       </div>
                       <hr>

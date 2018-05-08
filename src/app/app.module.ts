@@ -58,12 +58,15 @@ import {VgCoreModule} from 'videogular2/core';
 import {VgControlsModule} from 'videogular2/controls';
 import {VgOverlayPlayModule} from 'videogular2/overlay-play';
 import {VgBufferingModule} from 'videogular2/buffering';
-import {EventsPlanningComponent} from './pages/events-planning/events-planning.component';
 import {BroadcastComponent} from './pages/events/broadcast/broadcast.component';
 import {BroadcastByUserComponent} from './pages/broadcast-by-user/broadcast-by-user.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {ContactUsService} from './service/ContactUs.service';
-
+import {TranslateLoader, TranslateModule, TranslateStaticLoader} from 'ng2-translate';
+import {Http} from '@angular/http';
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 
 @NgModule({
@@ -98,10 +101,10 @@ import {ContactUsService} from './service/ContactUs.service';
     ActifModuleComponent,
     WatchVideosComponent,
     VideoesByModuleComponent,
-    EventsPlanningComponent,
     BroadcastComponent,
     BroadcastByUserComponent,
     ContactComponent
+
 
 
   ],
@@ -130,7 +133,13 @@ import {ContactUsService} from './service/ContactUs.service';
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   providers: [AuthenticationService, UsersService, FileUploadService, EventService, VideoService, ModuleService, ContactUsService],
   bootstrap: [AppComponent]

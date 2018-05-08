@@ -15,7 +15,7 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Add new event </h4>
+                    <h4 class="card-title" translate>New Event</h4>
                   </div>
                   <div class="card-body">
                     <div class="card-block">
@@ -28,9 +28,8 @@
                           <input  class="form-control" [owlDateTimeTrigger]="dt2"  ngModel="" [owlDateTime]="dt2" placeholder="End Date" name="endDate" required >
                           <owl-date-time #dt2></owl-date-time>
                           <br>
-                          <button [disabled]="!f.valid"  type="submit" class="btn btn-primary">Save</button>
-                          <button type="button" (click)="returnToCalendar()" class="btn btn-danger">Cancel</button>
-                          <button type="button" (click)="getToken()" class="btn btn-danger"> token </button>
+                          <button [disabled]="!f.valid"  type="submit" class="btn btn-primary" translate>Save</button>
+                          <button type="button" (click)="returnToCalendar()" class="btn btn-danger" translate>Cancel</button>
                         </form>
                     </div>
                   </div>
