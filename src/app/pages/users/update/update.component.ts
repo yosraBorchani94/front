@@ -49,6 +49,8 @@ export class UpdateComponent implements OnInit {
                setTimeout(() => {
                  this.router.navigate(['/login']);
                }, 2000);
+             }else {
+              this.router.navigateByUrl('/users');
              }
            },
            err => {
